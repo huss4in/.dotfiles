@@ -9,3 +9,7 @@
 [submodule "stow/zsh/.config/zsh/.oh-my-zsh"]
 	path = stow/zsh/.config/zsh/.oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh
+
+[submodule "stow/zsh/.config/zsh/custom/themes/powerlevel10k"]
+	path = stow/zsh/.config/zsh/custom/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
