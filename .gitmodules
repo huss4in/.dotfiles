@@ -13,3 +13,19 @@
 [submodule "stow/zsh/.config/zsh/custom/themes/powerlevel10k"]
 	path = stow/zsh/.config/zsh/custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+
+[submodule "stow/zsh/.config/zsh/custom/plugins/zsh-autosuggestions"]
+	path = stow/zsh/.config/zsh/custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+
+[submodule "stow/zsh/.config/zsh/custom/plugins/zsh-completions"]
+	path = stow/zsh/.config/zsh/custom/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
+
+[submodule "stow/zsh/.config/zsh/custom/plugins/zsh-syntax-highlighting"]
+	path = stow/zsh/.config/zsh/custom/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+
+[submodule "stow/zsh/.config/zsh/custom/plugins/zsh-bash-completions-fallback"]
+	path = stow/zsh/.config/zsh/custom/plugins/zsh-bash-completions-fallback
+	url = https://github.com/3v1n0/zsh-bash-completions-fallback
