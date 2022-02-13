@@ -5,3 +5,7 @@
 [submodule "stow/tmux/.config/tmux/plugins/tmux-sensible"]
 	path = stow/tmux/.config/tmux/plugins/tmux-sensible
 	url = https://github.com/tmux-plugins/tmux-sensible
+
+[submodule "stow/zsh/.config/zsh/.oh-my-zsh"]
+	path = stow/zsh/.config/zsh/.oh-my-zsh
+	url = https://github.com/ohmyzsh/ohmyzsh
