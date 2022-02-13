@@ -1,0 +1,19 @@
+# Realod shell
+alias src="exec $SHELL"
+
+# exa
+alias \
+    lx="exa --icons" \
+    lxl="lx --long" \
+    lxa="lxl --all --group --header" \
+    \
+    lxd="lx --only-dirs" \
+    lxld="lxl --only-dirs" \
+    lxad="lxa --only-dirs" \
+    \
+    lxt="lx --tree --level" \
+    lxtl="lxl --tree --level" \
+    lxat="lxa --tree --level" \
+    \
+    lxg="lxl --git" \
+    lxag="lxa --git"
