@@ -24,7 +24,6 @@ zstyle ':omz:update' frequency 1
 # zsh options
 CASE_SENSITIVE="true"
 HYPHEN_INSENSITIVE="true"
-COMPLETION_WAITING_DOTS="true"
 
 # Plugins options
 
@@ -48,6 +47,9 @@ plugins=(
 
 autoload -U compinit && compinit
 
+export ZVM_KETIMEOUTY=0.1
+export ZVM_ESCAPE_KEYTIMEOUT=0.01
+
 source $ZSH/oh-my-zsh.sh
 
 # -- Oh-my-zsh -- #
@@ -59,13 +61,6 @@ source $ZSH/oh-my-zsh.sh
 HISTSIZE=1000000
 SAVEHIST=1000000
 HISTFILE="$ZDOTDIR/.zsh_history"
-
-# # Basic auto/tab complete:
-# autoload -U compinit
-# zstyle ':completion:*' menu select
-# zmodload zsh/complist
-# compinit
-# # _comp_options+=(globdots) # Include hidden files.
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
