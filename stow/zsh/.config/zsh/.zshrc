@@ -36,13 +36,14 @@ plugins=(
 
   # zsh plugins
   z
+  zsh-vi-mode
   zsh-completions
+  zsh-interactive-cd
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-history-substring-search
 
   # others
-
 )
 
 autoload -U compinit && compinit
@@ -65,10 +66,6 @@ HISTFILE="$ZDOTDIR/.zsh_history"
 # zmodload zsh/complist
 # compinit
 # # _comp_options+=(globdots) # Include hidden files.
-
-# vi mode
-bindkey -v
-export KEYTIMEOUT=1
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
