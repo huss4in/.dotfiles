@@ -22,7 +22,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 zstyle ':omz:update' frequency 1
 
 # zsh options
-CASE_SENSITIVE="true"
+#CASE_SENSITIVE="true"
 HYPHEN_INSENSITIVE="true"
 
 # Plugins options
