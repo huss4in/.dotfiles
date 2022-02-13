@@ -35,6 +35,7 @@ plugins=(
   docker
 
   # zsh plugins
+  z
   zsh-completions
   zsh-autosuggestions
   zsh-syntax-highlighting
