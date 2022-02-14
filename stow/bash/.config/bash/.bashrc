@@ -8,4 +8,4 @@ BASHDOTDIR="$HOME/.config/bash"
 [[ -f "$HOME/.profile" ]] && . "$HOME/.profile"
 
 # Load aliases
-[ -f "$HOME/.config/shell/aliasrc" ] && source "$HOME/.config/shell/aliasrc"
+[ -f "$HOME/.config/shell/.aliasrc" ] && source "$HOME/.config/shell/.aliasrc"

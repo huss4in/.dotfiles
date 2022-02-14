@@ -25,8 +25,6 @@ zstyle ':omz:update' frequency 1
 #CASE_SENSITIVE="true"
 HYPHEN_INSENSITIVE="true"
 
-# Plugins options
-
 plugins=(
   # tools
   git
@@ -45,10 +43,14 @@ plugins=(
   # others
 )
 
+# Plugins options
 autoload -U compinit && compinit
 
-export ZVM_KETIMEOUTY=0.1
-export ZVM_ESCAPE_KEYTIMEOUT=0.01
+function zvm_config() {
+  export ZVM_KETIMEOUTY=0.1
+  export ZVM_ESCAPE_KEYTIMEOUT=0.01
+}
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -71,7 +73,7 @@ bindkey -v '^?' backward-delete-char
 
 
 # Load aliases
-[[ -f "$HOME/.config/shell/aliasrc" ]] && source "$HOME/.config/shell/aliasrc"
+[[ -f "$HOME/.config/shell/.aliasrc" ]] && source "$HOME/.config/shell/.aliasrc"
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
