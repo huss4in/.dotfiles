@@ -4,18 +4,21 @@
 [submodule "stow/tmux/.config/tmux/plugins/tmux-sensible"]
 	path = stow/tmux/.config/tmux/plugins/tmux-sensible
 	url = https://github.com/tmux-plugins/tmux-sensible
+[submodule "stow/tmux/.config/tmux/plugins/tmux-power"]
+	path = stow/tmux/.config/tmux/plugins/tmux-power
+	url = https://github.com/huss4in7/tmux-power
 [submodule "stow/zsh/.config/zsh/.oh-my-zsh"]
 	path = stow/zsh/.config/zsh/.oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh
 [submodule "stow/zsh/.config/zsh/custom/themes/powerlevel10k"]
 	path = stow/zsh/.config/zsh/custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
-[submodule "stow/zsh/.config/zsh/custom/plugins/zsh-autosuggestions"]
-	path = stow/zsh/.config/zsh/custom/plugins/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions
 [submodule "stow/zsh/.config/zsh/custom/plugins/zsh-completions"]
 	path = stow/zsh/.config/zsh/custom/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
+[submodule "stow/zsh/.config/zsh/custom/plugins/zsh-autosuggestions"]
+	path = stow/zsh/.config/zsh/custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
 [submodule "stow/zsh/.config/zsh/custom/plugins/zsh-syntax-highlighting"]
 	path = stow/zsh/.config/zsh/custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
@@ -28,4 +31,3 @@
 [submodule "stow/zsh/.config/zsh/custom/plugins/zsh-vi-mode"]
 	path = stow/zsh/.config/zsh/custom/plugins/zsh-vi-mode
 	url = https://github.com/jeffreytse/zsh-vi-mode
-
