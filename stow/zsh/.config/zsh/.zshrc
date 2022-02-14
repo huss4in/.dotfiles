@@ -43,14 +43,22 @@ plugins=(
   # others
 )
 
-# Plugins options
-autoload -U compinit && compinit
+# - Plugins options - #
 
+# Completion
+autoload -U compinit && compinit
+zstyle ':completion:*' menu select
+
+# zsh-vi-mode
 function zvm_config() {
   export ZVM_KETIMEOUTY=0.1
   export ZVM_ESCAPE_KEYTIMEOUT=0.01
 }
 
+# z
+_Z_DATA="$ZDOTDIR/.z"
+
+# - Plugins options - #
 
 source $ZSH/oh-my-zsh.sh
 
