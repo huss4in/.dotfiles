@@ -30,6 +30,7 @@ plugins=(
   zsh-syntax-highlighting
   zsh-completions
   zsh-autosuggestions
+  zsh-bash-completions-fallback
   zsh-interactive-cd
   vi-mode
   zsh-vimode-visual
