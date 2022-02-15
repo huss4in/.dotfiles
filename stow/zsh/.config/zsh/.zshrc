@@ -26,21 +26,22 @@ zstyle ':omz:update' frequency 1
 HYPHEN_INSENSITIVE="true"
 
 plugins=(
+  # zsh plugins
+  zsh-syntax-highlighting
+  zsh-completions
+  zsh-autosuggestions
+  zsh-interactive-cd
+  vi-mode
+  zsh-vimode-visual
+  z
+
   # tools
   git
   pip
   docker
 
-  # zsh plugins
-  z
-  zsh-vi-mode
-  zsh-completions
-  zsh-interactive-cd
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  zsh-history-substring-search
-
   # others
+  sudo
 )
 
 # - Plugins options - #
@@ -49,11 +50,6 @@ plugins=(
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
 
-# zsh-vi-mode
-function zvm_config() {
-  export ZVM_KETIMEOUTY=0.1
-  export ZVM_ESCAPE_KEYTIMEOUT=0.01
-}
 
 # z
 _Z_DATA="$ZDOTDIR/.z"

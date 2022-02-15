@@ -1,3 +1,4 @@
+# tmux
 [submodule "stow/tmux/.config/tmux/plugins/tpm"]
 	path = stow/tmux/.config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
@@ -7,6 +8,8 @@
 [submodule "stow/tmux/.config/tmux/plugins/tmux-power"]
 	path = stow/tmux/.config/tmux/plugins/tmux-power
 	url = https://github.com/huss4in7/tmux-power
+
+# zsh
 [submodule "stow/zsh/.config/zsh/.oh-my-zsh"]
 	path = stow/zsh/.config/zsh/.oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh
@@ -28,6 +31,9 @@
 [submodule "stow/zsh/.config/zsh/custom/plugins/zsh-history-substring-search"]
 	path = stow/zsh/.config/zsh/custom/plugins/zsh-history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search
-[submodule "stow/zsh/.config/zsh/custom/plugins/zsh-vi-mode"]
-	path = stow/zsh/.config/zsh/custom/plugins/zsh-vi-mode
-	url = https://github.com/jeffreytse/zsh-vi-mode
+[submodule "stow/zsh/.config/zsh/custom/plugins/vi-mode"]
+	path = stow/zsh/.config/zsh/custom/plugins/vi-mode
+	url = https://github.com/nyquase/vi-mode
+[submodule "stow/zsh/.config/zsh/custom/plugins/zsh-vimode-visual"]
+	path = stow/zsh/.config/zsh/custom/plugins/zsh-vimode-visual
+	url = https://github.com/b4b4r07/zsh-vimode-visual
