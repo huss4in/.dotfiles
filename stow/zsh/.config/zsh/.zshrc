@@ -89,6 +89,7 @@ bindkey -v '^?' backward-delete-char
 # -- Welcome prompt -- #
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-neofetch --disable packages
+neofetch
 
-# -- Welcome prompt -- #
+# -- Welcome prompt -- ##
+
