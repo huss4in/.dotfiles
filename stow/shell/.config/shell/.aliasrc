@@ -1,5 +1,5 @@
 # Realod shell
-alias src="exec `ps -p $$ -oargs=`"
+alias src="exec $SHELL"
 
 # exa
 alias \
