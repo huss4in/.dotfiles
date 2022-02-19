@@ -27,33 +27,33 @@ HYPHEN_INSENSITIVE="true"
 
 plugins=(
   # zsh plugins
-  zsh-syntax-highlighting
   zsh-completions
   zsh-autosuggestions
+  zsh-syntax-highlighting
   zsh-bash-completions-fallback
-  zsh-interactive-cd
+
+  # vi mode
   vi-mode
   zsh-vimode-visual
-  z
 
-  # tools
+  # directory jumping
+  z
+  zsh-interactive-cd
+
+  # tools integration
   git
   pip
   docker
-
-  # others
-  sudo
 )
 
 # - Plugins options - #
 
+# z
+_Z_DATA="$ZDOTDIR/.z"
+
 # Completion
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
-
-
-# z
-_Z_DATA="$ZDOTDIR/.z"
 
 # - Plugins options - #
 
@@ -75,7 +75,6 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
-
 
 # Load aliases
 [[ -f "$HOME/.config/shell/.aliasrc" ]] && source "$HOME/.config/shell/.aliasrc"
