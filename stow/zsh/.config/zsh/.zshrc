@@ -43,6 +43,9 @@ plugins=(
   # tools integration
   git
   pip
+  npm
+  node
+  rust
   docker
 )
 
