@@ -44,6 +44,7 @@ plugins=(
   git
   pip
   npm
+  yarn
   node
   rust
   docker
