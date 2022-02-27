@@ -17,3 +17,6 @@ alias \
     \
     lxg="lxl --git" \
     lxag="lxa --git"
+
+alias \
+    v="nvim"
