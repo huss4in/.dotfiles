@@ -86,11 +86,10 @@ bindkey -v '^?' backward-delete-char
 # Load ~/.profile
 [[ -f "$HOME/.profile" ]] && . "$HOME/.profile"
 
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-
 # -- Configuration -- #
 
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
 # -- Welcome prompt -- #
 
