@@ -55,7 +55,7 @@ plugins=(
   node
   rust
   docker
-  # zsh-nvm
+  zsh-nvm
 )
 
 # - Plugins options - #
