@@ -37,6 +37,3 @@
 [submodule "stow/zsh/.config/zsh/custom/plugins/zsh-vimode-visual"]
 	path = stow/zsh/.config/zsh/custom/plugins/zsh-vimode-visual
 	url = https://github.com/b4b4r07/zsh-vimode-visual
-[submodule "stow/zsh/.config/zsh/custom/plugins/zsh-nvm"]
-	path = stow/zsh/.config/zsh/custom/plugins/zsh-nvm
-	url = https://github.com/lukechilds/zsh-nvm

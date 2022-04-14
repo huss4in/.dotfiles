@@ -29,9 +29,6 @@ zstyle ':omz:update' frequency 7
 #CASE_SENSITIVE="true"
 HYPHEN_INSENSITIVE="true"
 
-export NVM_LAZY_LOAD=true
-export NVM_COMPLETION=true
-
 plugins=(
   # zsh plugins
   zsh-completions
@@ -55,7 +52,6 @@ plugins=(
   node
   rust
   docker
-  zsh-nvm
 )
 
 # - Plugins options - #
@@ -65,6 +61,7 @@ _Z_DATA="$ZDOTDIR/.z"
 
 # Completion
 autoload -U compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
 zstyle ':completion:*' menu select
 
 # - Plugins options - #
