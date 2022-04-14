@@ -1,3 +1,5 @@
+neofetch
+
 # -- Instant Prompt -- #
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -5,6 +7,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 # -- Instant Prompt -- #
 
+# Load aliases
+[[ -f "$HOME/.config/shell/.aliasrc" ]] && source "$HOME/.config/shell/.aliasrc"
 
 # -- Oh-my-zsh -- #
 
@@ -19,11 +23,14 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Update reminder
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-zstyle ':omz:update' frequency 1
+zstyle ':omz:update' frequency 7
 
 # zsh options
 #CASE_SENSITIVE="true"
 HYPHEN_INSENSITIVE="true"
+
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
 
 plugins=(
   # zsh plugins
@@ -48,6 +55,7 @@ plugins=(
   node
   rust
   docker
+  # zsh-nvm
 )
 
 # - Plugins options - #
@@ -80,21 +88,7 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-# Load aliases
-[[ -f "$HOME/.config/shell/.aliasrc" ]] && source "$HOME/.config/shell/.aliasrc"
-
-# Load ~/.profile
-[[ -f "$HOME/.profile" ]] && . "$HOME/.profile"
-
 # -- Configuration -- #
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-
-# -- Welcome prompt -- #
-
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-neofetch
-
-# -- Welcome prompt -- ##
-

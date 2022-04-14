@@ -1,4 +1,10 @@
-export ZDOTDIR="$HOME/.config/zsh"
+export ZDOTDIR=~/.config/zsh
+export XDG_CONFIG_HOME=~/.config
+export XDG_CACHE_HOME=~/.cache
+export XDG_DATA_HOME=~/.local/share
+export XDG_RUNTIME_DIR=~/.xdg
 
-# Load ~/.config/shell/.profile
-[[ -f "$HOME/.config/shell/.profile" ]] && . "$HOME/.config/shell/.profile"
+# Ensure that a non-login, non-interactive shell has a defined environment.
+if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprofile"
+fi
