@@ -1,0 +1,8 @@
+version: "3.9"
+
+services:
+  dotfiles:
+    container_name: dotfiles
+    build: .
+    stdin_open: true
+    tty: true
