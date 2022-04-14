@@ -7,7 +7,8 @@ export LANG="en_US.UTF-8"
 export LANGUAGE="en"
 export LC_ALL="$LANG"
 
-# Load .zprofile
+# Load .profile
+[[ -f "$HOME/.profile" ]] && source "$HOME/.profile"
 [[ -f "$HOME/.zprofile" ]] && source "$HOME/.zprofile"
 
 export SHELL_SESSIONS_DISABLE=1
