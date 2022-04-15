@@ -7,4 +7,3 @@ export LANG="en_US.UTF-8"
 export LANGUAGE="en"
 export LC_ALL="$LANG"
 
-export SHELL_SESSIONS_DISABLE=1
