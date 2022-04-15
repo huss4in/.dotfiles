@@ -1,5 +1,5 @@
 # Realod shell
-alias src="exec $SHELL"
+alias src="exec /bin/zsh"
 
 # exa
 alias \
@@ -12,7 +12,7 @@ alias \
     lxad="lxa --only-dirs" \
     \
     lxt="lx --tree --level" \
-    lxtl="lxl --tree --level" \
+    lxlt="lxl --tree --level" \
     lxat="lxa --tree --level" \
     \
     lxg="lxl --git" \

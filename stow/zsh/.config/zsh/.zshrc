@@ -70,6 +70,11 @@ source $ZSH/oh-my-zsh.sh
 
 # -- Oh-my-zsh -- #
 
+function reload() {
+    source ~/.zshenv
+    source ~/.config/zsh/.zlogin
+    source ~/.config/zsh/.zprofile
+}
 
 # -- Configuration -- #
 
