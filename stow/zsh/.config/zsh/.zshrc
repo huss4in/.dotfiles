@@ -1,3 +1,4 @@
+# System fetch
 neofetch
 
 # -- Instant Prompt -- #
@@ -14,7 +15,7 @@ fi
 
 export ZDOTDIR="${ZDOTDIR:-$HOME}"
 
-# Path to your oh-my-zsh installation.
+# Path to .oh-my-zsh installation.
 export ZSH="$ZDOTDIR/.oh-my-zsh"
 ZSH_CUSTOM="$ZDOTDIR/custom"
 
@@ -26,8 +27,11 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 zstyle ':omz:update' frequency 7
 
 # zsh options
-#CASE_SENSITIVE="true"
 HYPHEN_INSENSITIVE="true"
+
+export NVM_DIR="$HOME/.config/.nvm"
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
 
 plugins=(
   # zsh plugins
@@ -48,21 +52,18 @@ plugins=(
   git
   pip
   npm
+  aws
   yarn
   node
   rust
   docker
+  zsh-nvm
 )
 
 # - Plugins options - #
 
 # z
 _Z_DATA="$ZDOTDIR/.z"
-
-# Completion
-autoload -U compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
-zstyle ':completion:*' menu select
 
 # - Plugins options - #
 
@@ -81,7 +82,12 @@ function reload() {
 # History in cache directory:
 HISTSIZE=1000000
 SAVEHIST=1000000
-HISTFILE="$ZDOTDIR/.zsh_history"
+HISTFILE="$ZDOTDIR/.history_zsh"
+
+# Completion
+autoload -U compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+zstyle ':completion:*' menu select
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
@@ -94,3 +100,4 @@ bindkey -v '^?' backward-delete-char
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
