@@ -30,7 +30,7 @@ zstyle ':omz:update' frequency 7
 HYPHEN_INSENSITIVE="true"
 
 export NVM_DIR="$HOME/.config/.nvm"
-export NVM_LAZY_LOAD=true
+# export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
 
 plugins=(
@@ -50,14 +50,20 @@ plugins=(
 
   # tools integration
   git
-  pip
-  npm
-  aws
-  yarn
-  node
-  rust
   docker
+
+  rust
+
+  python
+  pyenv
+  pip
+
   zsh-nvm
+  npm
+  node
+  yarn
+
+  aws
 )
 
 # - Plugins options - #
