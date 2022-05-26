@@ -1,3 +1,5 @@
 ```sh
-stow --stow --verbose --no --target ~ */
+stow --no --stow --verbose --target ~ */
+
+stow -nSvt ~ */
 ```
