@@ -1,5 +1,5 @@
 # System fetch
-neofetch
+command -v neofetch &> /dev/null && neofetch
 
 # -- Instant Prompt -- #
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
