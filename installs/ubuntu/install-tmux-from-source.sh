@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-sudo apt update
-
+sudo apt update && \
 sudo apt install -y git automake bison build-essential pkg-config libevent-dev libncurses5-dev
 
 rm -fr /tmp/tmux

@@ -9,7 +9,7 @@ fi
 # -- Instant Prompt -- #
 
 # Load aliases
-[[ -f "$HOME/.config/shell/.aliasrc" ]] && source "$HOME/.config/shell/.aliasrc"
+[[ -f "$HOME/.config/shell/aliasrc" ]] && source "$HOME/.config/shell/aliasrc"
 
 # -- Oh-my-zsh -- #
 
@@ -29,9 +29,17 @@ zstyle ':omz:update' frequency 7
 # zsh options
 HYPHEN_INSENSITIVE="true"
 
-export NVM_DIR="$HOME/.config/.nvm"
-# export NVM_LAZY_LOAD=true
-export NVM_COMPLETION=true
+# z
+_Z_DATA="$ZDOTDIR/.z"
+
+# History in cache directory:
+HISTSIZE=1000000
+SAVEHIST=1000000
+HISTFILE="$ZDOTDIR/.history_zsh"
+
+# export NVM_DIR="$HOME/.config/.nvm"
+# # export NVM_LAZY_LOAD=true
+# export NVM_COMPLETION=true
 
 plugins=(
   # zsh plugins
@@ -54,41 +62,24 @@ plugins=(
 
   rust
 
-  python
   pyenv
+  python
   pip
 
-  zsh-nvm
+  # zsh-nvm
+  nvm
   npm
   node
   yarn
 
-  aws
+  # aws
 )
-
-# - Plugins options - #
-
-# z
-_Z_DATA="$ZDOTDIR/.z"
-
-# - Plugins options - #
 
 source $ZSH/oh-my-zsh.sh
 
 # -- Oh-my-zsh -- #
 
-function reload() {
-    source ~/.zshenv
-    source ~/.config/zsh/.zlogin
-    source ~/.config/zsh/.zprofile
-}
-
 # -- Configuration -- #
-
-# History in cache directory:
-HISTSIZE=1000000
-SAVEHIST=1000000
-HISTFILE="$ZDOTDIR/.history_zsh"
 
 # Completion
 autoload -U compinit && compinit

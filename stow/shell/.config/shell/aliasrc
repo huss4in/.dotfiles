@@ -1,5 +1,10 @@
 # Realod shell
 alias src="exec /bin/zsh"
+function reload() {
+  source ~/.zshenv
+  source ~/.config/zsh/.zlogin
+  source ~/.config/zsh/.zprofile
+}
 
 # exa
 alias \
