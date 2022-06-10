@@ -1,16 +1,13 @@
 FROM ubuntu
 
-ARG USER husslin
-
 ENV DEBIAN_FRONTEND noninteractive 
 
 # Dependencies
-RUN apt update -y && apt upgrade -y && \
-    apt install -y software-properties-common && \
-    add-apt-repository ppa:deadsnakes/ppa -y && \
-    apt update -y && apt install -y \
-    zsh \
+RUN apt update -y && \
+    apt upgrade -y && \
+    apt install -y \
     sudo \
+    zsh \
     openssl \
     git \
     stow \
