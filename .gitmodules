@@ -40,3 +40,6 @@
 [submodule "stow/zsh/.config/zsh/custom/plugins/zsh-nvm"]
 	path = stow/zsh/.config/zsh/custom/plugins/zsh-nvm
 	url = https://github.com/lukechilds/zsh-nvm.git
+[submodule "stow/nvim/.config/nvim"]
+	path = stow/nvim/.config/nvim
+	url = https://github.com/huss4in/AstroNvim
