@@ -23,5 +23,11 @@ alias \
     lxg="lxl --git" \
     lxag="lxa --git"
 
+# vim
 alias \
     v="nvim"
+
+# lazygit
+alias \
+    lg="lazygit"
+
