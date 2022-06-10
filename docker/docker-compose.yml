@@ -4,6 +4,6 @@ services:
   dotfiles:
     container_name: dotfiles
     build:
-      dockerfile: Dockerfile.arch
+      dockerfile: arch/Dockerfile
     stdin_open: true
     tty: true
