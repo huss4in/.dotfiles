@@ -42,4 +42,4 @@
 	url = https://github.com/lukechilds/zsh-nvm.git
 [submodule "stow/nvim/.config/nvim"]
 	path = stow/nvim/.config/nvim
-	url = https://github.com/huss4in/AstroNvim
+	url = https://github.com/AstroNvim/AstroNvim.git
