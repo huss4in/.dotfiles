@@ -1,4 +1,5 @@
-return {
+local config = {
+
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
@@ -7,13 +8,30 @@ return {
     branch = "main", -- branch name (NIGHTLY ONLY)
     commit = nil, -- commit hash (NIGHTLY ONLY)
     pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
-    skip_prompts = true, -- skip prompts about breaking changes
+    skip_prompts = false, -- skip prompts about breaking changes
     show_changelog = true, -- show the changelog after performing an update
+    -- remotes = { -- easily add new remotes to track
+    --   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
+    --   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
+    --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
+    -- },
   },
 
   -- Set colorscheme
   colorscheme = "material",
-  -- colorscheme = "tokyonight",
+
+  -- Override highlight groups in any theme
+  highlights = {
+    -- duskfox = { -- a table of overrides
+    --   Normal = { bg = "#000000" },
+    -- },
+    default_theme = function(highlights) -- or a function that returns one
+      local C = require "default_theme.colors"
+
+      highlights.Normal = { fg = C.fg, bg = C.bg }
+      return highlights
+    end,
+  },
 
   -- set vim options here (vim.<first_key>.<second_key> =  value)
   options = {
@@ -31,44 +49,37 @@ return {
       tokyonight_style = "night",
 
       -- neovide
-      neovide_refresh_rate = 240,
+      neovide_refresh_rate = 165,
     },
   },
 
-  -- -- Default theme configuration
-  -- default_theme = {
-  --   diagnostics_style = { italic = true },
-  --   -- Modify the color table
-  --   colors = {
-  --     fg = "#abb2bf",
-  --   },
-  --   -- Modify the highlight groups
-  --   highlights = function(highlights)
-  --     local C = require "default_theme.colors"
-  --
-  --     highlights.Normal = { fg = C.fg, bg = C.bg }
-  --     return highlights
-  --   end,
-  --   plugins = { -- enable or disable extra plugin highlighting
-  --     aerial = true,
-  --     beacon = false,
-  --     bufferline = true,
-  --     dashboard = true,
-  --     highlighturl = true,
-  --     hop = false,
-  --     indent_blankline = true,
-  --     lightspeed = false,
-  --     ["neo-tree"] = true,
-  --     notify = true,
-  --     ["nvim-tree"] = false,
-  --     ["nvim-web-devicons"] = true,
-  --     rainbow = true,
-  --     symbols_outline = false,
-  --     telescope = true,
-  --     vimwiki = false,
-  --     ["which-key"] = true,
-  --   },
-  -- },
+  -- Default theme configuration
+  default_theme = {
+    diagnostics_style = { italic = true },
+    -- Modify the color table
+    colors = {
+      fg = "#abb2bf",
+    },
+    plugins = { -- enable or disable extra plugin highlighting
+      aerial = true,
+      beacon = false,
+      bufferline = true,
+      dashboard = true,
+      highlighturl = true,
+      hop = false,
+      indent_blankline = true,
+      lightspeed = false,
+      ["neo-tree"] = true,
+      notify = true,
+      ["nvim-tree"] = false,
+      ["nvim-web-devicons"] = true,
+      rainbow = true,
+      symbols_outline = false,
+      telescope = true,
+      vimwiki = false,
+      ["which-key"] = true,
+    },
+  },
 
   -- Disable AstroNvim ui features
   ui = {
@@ -86,6 +97,7 @@ return {
 
       -- functionalities
       { "jeffkreeftmeijer/vim-numbertoggle" },
+      { "mg979/vim-visual-multi" },
 
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
@@ -132,7 +144,7 @@ return {
       ensure_installed = { "sumneko_lua" },
     },
     packer = {
-      compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",
+      compile_path = vim.fn.stdpath "data" .. "/packer_compiled.lua",
     },
   },
 
@@ -143,21 +155,6 @@ return {
     -- Extend filetypes
     filetype_extend = {
       javascript = { "javascriptreact" },
-    },
-  },
-
-  -- Modify which-key registration
-  ["which-key"] = {
-    -- Add bindings
-    register_mappings = {
-      -- first key is the mode, n == normal mode
-      n = {
-        -- second key is the prefix, <leader> prefixes
-        ["<leader>"] = {
-          -- which-key registration table for normal mode, leader prefix
-          -- ["N"] = { "<cmd>tabnew<cr>", "New Buffer" },
-        },
-      },
     },
   },
 
@@ -181,6 +178,12 @@ return {
     -- enable servers that you already have installed without lsp-installer
     servers = {
       -- "pyright"
+    },
+    -- easily add or disable built in mappings added during LSP attaching
+    mappings = {
+      n = {
+        -- ["<leader>lf"] = false -- disable formatting keymap
+      },
     },
     -- add to the server on_attach function
     -- on_attach = function(client, bufnr)
@@ -214,12 +217,53 @@ return {
     underline = true,
   },
 
-  -- This function is run last
-  -- good place to configure mappings and vim options
-  polish = function()
-    -- Set key bindings
-    vim.keymap.set("n", "<C-s>", ":w!<CR>")
+  -- Mapping data with "desc" stored directly by vim.keymap.set().
+  --
+  -- Please use this mappings table to set keyboard mapping since this is the
+  -- lower level configuration and more robust one. (which-key will
+  -- automatically pick-up stored data by this setting.)
+  mappings = {
+    -- first key is the mode
+    n = {
+      -- second key is the lefthand side of the map
+      -- mappings seen under group name "Buffer"
+      ["<leader>bb"] = { "<cmd>BufferLinePick<cr>", desc = "Pick window" },
 
+      ["<A-l>"] = { "<cmd>BufferLineMoveNext<cr>", desc = "Move window next" },
+      ["<A-h>"] = { "<cmd>BufferLineMovePrev<cr>", desc = "Move window previos" },
+
+      ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
+      ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
+      ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
+      -- quick save
+      -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    },
+    t = {
+      -- setting a mapping to false will disable it
+      -- ["<esc>"] = false,
+    },
+  },
+
+  -- Modify which-key registration (Use this with mappings table in the above.)
+  ["which-key"] = {
+    -- Add bindings which show up as group name
+    register_mappings = {
+      -- first key is the mode, n == normal mode
+      n = {
+        -- second key is the prefix, <leader> prefixes
+        ["<leader>"] = {
+          -- third key is the key to bring up next level and its displayed
+          -- group name in which-key top level menu
+          ["b"] = { name = "Buffer" },
+        },
+      },
+    },
+  },
+
+  -- This function is run last
+  -- good place to configuring augroups/autocommands and custom filetypes
+  polish = function()
+    -- Set key binding
     -- Set autocommands
     vim.api.nvim_create_augroup("packer_conf", { clear = true })
     vim.api.nvim_create_autocmd("BufWritePost", {
@@ -243,3 +287,5 @@ return {
     -- }
   end,
 }
+
+return config
