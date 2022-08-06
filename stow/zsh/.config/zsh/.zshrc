@@ -27,7 +27,15 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 zstyle ':omz:update' frequency 7
 
 # zsh options
-HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIV="true"
+
+# vim-mode
+MODE_CURSOR_VIINS="#00ff00 blinking bar"
+MODE_CURSOR_REPLACE="$MODE_CURSOR_VIINS #ff0000"
+MODE_CURSOR_VICMD="green block"
+MODE_CURSOR_SEARCH="#ff00ff steady underline"
+MODE_CURSOR_VISUAL="$MODE_CURSOR_VICMD steady"
+MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
 
 # z
 _Z_DATA="$ZDOTDIR/.z"
@@ -41,16 +49,18 @@ HISTFILE="$ZDOTDIR/.history_zsh"
 # # export NVM_LAZY_LOAD=true
 # export NVM_COMPLETION=true
 
+KEYTIMEOUT=10
+
 plugins=(
   # zsh plugins
   zsh-completions
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-bash-completions-fallback
+  zsh-history-substring-search
 
   # vi mode
-  vi-mode
-  zsh-vimode-visual
+  zsh-vim-mode
 
   # directory jumping
   z
@@ -66,7 +76,6 @@ plugins=(
   python
   pip
 
-  # zsh-nvm
   nvm
   npm
   node
