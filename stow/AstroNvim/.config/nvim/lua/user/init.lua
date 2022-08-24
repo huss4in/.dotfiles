@@ -49,7 +49,7 @@ local config = {
 			clipboard = "",
 
 			-- gui
-			guifont = "FiraCode Nerd Font:h12",
+			guifont = "FiraCode Nerd Font:h10",
 		},
 		g = {
 			mapleader = " ", -- sets vim.g.mapleader
@@ -59,7 +59,7 @@ local config = {
 			tokyonight_style = "night",
 
 			-- neovide
-			neovide_refresh_rate = 165,
+			neovide_refresh_rate = 240,
 
 			copilot_no_tab_map = true,
 			copilot_assume_mapped = true,
@@ -300,6 +300,13 @@ local config = {
 					})
 				end,
 			},
+
+			-- Rust
+			{ "rust-lang/rust.vim" },
+
+			-- -- Debugging
+			-- { "mfussenegger/nvim-dap" },
+
 			-- You can disable default plugins as follows:
 			-- ["goolord/alpha-nvim"] = { disable = true },
 
