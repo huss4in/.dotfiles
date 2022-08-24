@@ -1,3 +1,9 @@
+--              AstroNvim Configuration Table
+-- All configuration changes should go inside of the table below
+
+-- You can think of a Lua "table" as a dictionary like data structure the
+-- normal format is "key = value". These also handle array like data structures
+-- where a value with no key simply has an implicit numeric key
 local config = {
 
 	-- Configure AstroNvim updates
@@ -10,6 +16,8 @@ local config = {
 		pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
 		skip_prompts = false, -- skip prompts about breaking changes
 		show_changelog = true, -- show the changelog after performing an update
+		auto_reload = false, -- automatically reload and sync packer after a successful update
+		auto_quit = false, -- automatically quit the current session after a successful update
 		-- remotes = { -- easily add new remotes to track
 		--   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
 		--   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
@@ -17,15 +25,15 @@ local config = {
 		-- },
 	},
 
-	-- Set colorscheme
+	-- Set colorscheme to use
 	colorscheme = "material",
 
 	-- Override highlight groups in any theme
 	highlights = {
-		-- duskfox = { -- a table of overrides
+		-- duskfox = { -- a table of overrides/changes to the default
 		--   Normal = { bg = "#000000" },
 		-- },
-		default_theme = function(highlights) -- or a function that returns one
+		default_theme = function(highlights) -- or a function that returns a new table of colors to set
 			local C = require("default_theme.colors")
 
 			highlights.Normal = { fg = C.fg, bg = C.bg }
@@ -36,6 +44,7 @@ local config = {
 	-- set vim options here (vim.<first_key>.<second_key> =  value)
 	options = {
 		opt = {
+			relativenumber = true,
 			confirm = true,
 			clipboard = "",
 
@@ -58,15 +67,42 @@ local config = {
 			highlightedyank_highlight_duration = 200,
 		},
 	},
+	-- If you need more control, you can use the function()...end notation
+	-- options = function(local_vim)
+	--   local_vim.opt.relativenumber = true
+	--   local_vim.g.mapleader = " "
+	--   local_vim.opt.whichwrap = vim.opt.whichwrap - { 'b', 's' } -- removing option from list
+	--   local_vim.opt.shortmess = vim.opt.shortmess + { I = true } -- add to option list
+	--
+	--   return local_vim
+	-- end,
+
+	-- Set dashboard header
+	header = {
+		" █████  ███████ ████████ ██████   ██████",
+		"██   ██ ██         ██    ██   ██ ██    ██",
+		"███████ ███████    ██    ██████  ██    ██",
+		"██   ██      ██    ██    ██   ██ ██    ██",
+		"██   ██ ███████    ██    ██   ██  ██████",
+		" ",
+		"   ███    ██ ██    ██ ██ ███    ███",
+		"   ████   ██ ██    ██ ██ ████  ████",
+		"   ██ ██  ██ ██    ██ ██ ██ ████ ██",
+		"   ██  ██ ██  ██  ██  ██ ██  ██  ██",
+		"   ██   ████   ████   ██ ██      ██",
+	},
 
 	-- Default theme configuration
 	default_theme = {
+		-- set the highlight style for diagnostic messages
 		diagnostics_style = { italic = true },
-		-- Modify the color table
+		-- Modify the color palette for the default theme
 		colors = {
 			fg = "#abb2bf",
+			bg = "#1e222a",
 		},
-		plugins = { -- enable or disable extra plugin highlighting
+		-- enable or disable highlighting for extra plugins
+		plugins = {
 			aerial = true,
 			beacon = false,
 			bufferline = true,
@@ -87,114 +123,15 @@ local config = {
 		},
 	},
 
-	-- Disable AstroNvim ui features
-	ui = {
-		nui_input = true,
-		telescope_select = true,
-	},
-
-	-- Configure plugins
-	plugins = {
-		-- Add plugins, the packer syntax without the "use"
-		init = {
-			{ "marko-cerovac/material.nvim" },
-			{ "folke/tokyonight.nvim" },
-
-			{ "machakann/vim-highlightedyank" },
-
-			{ "jeffkreeftmeijer/vim-numbertoggle" },
-			{ "mg979/vim-visual-multi" },
-
-			{ "github/copilot.vim" },
-
-			{ "tpope/vim-surround" },
-
-			{ "ggandor/lightspeed.nvim" },
-
-			{
-				"folke/todo-comments.nvim",
-				requires = "nvim-lua/plenary.nvim",
-				-- config = function()
-				-- end,
-			},
-
-			-- You can disable default plugins as follows:
-			-- ["goolord/alpha-nvim"] = { disable = true },
-
-			-- You can also add new plugins here as well:
-			-- { "andweeb/presence.nvim" },
-			-- {
-			--   "ray-x/lsp_signature.nvim",
-			--   event = "BufRead",
-			--   config = function()
-			--     require("lsp_signature").setup()
-			--   end,
-			-- },
-		},
-		-- All other entries override the setup() call for default plugins
-		["null-ls"] = function(config)
-			local null_ls = require("null-ls")
-			-- Check supported formatters and linters
-			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-			config.sources = {
-				-- Set a formatter
-				null_ls.builtins.formatting.rufo,
-				-- Set a linter
-				null_ls.builtins.diagnostics.rubocop,
-			}
-			-- set up null-ls's on_attach function
-			config.on_attach = function(client)
-				-- NOTE: You can remove this on attach function to disable format on save
-				if client.resolved_capabilities.document_formatting then
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						desc = "Auto format before save",
-						pattern = "<buffer>",
-						callback = vim.lsp.buf.formatting_sync,
-					})
-				end
-			end
-			return config -- return final config table
-		end,
-		treesitter = {
-			ensure_installed = { "lua" },
-		},
-		["nvim-lsp-installer"] = {
-			ensure_installed = { "stylua" },
-		},
-		packer = {
-			compile_path = vim.fn.stdpath("data") .. "/packer_compiled.lua",
-		},
-	},
-
-	-- LuaSnip Options
-	luasnip = {
-		-- Add paths for including more VS Code style snippets in luasnip
-		vscode_snippet_paths = {},
-		-- Extend filetypes
-		filetype_extend = {
-			javascript = { "javascriptreact" },
-		},
-	},
-
-	-- CMP Source Priorities
-	-- modify here the priorities of default cmp sources
-	-- higher value == higher priority
-	-- The value can also be set to a boolean for disabling default sources:
-	-- false == disabled
-	-- true == 1000
-	cmp = {
-		source_priority = {
-			nvim_lsp = 1000,
-			luasnip = 750,
-			buffer = 500,
-			path = 250,
-		},
+	-- Diagnostics configuration (for vim.diagnostics.config({...}))
+	diagnostics = {
+		virtual_text = true,
+		underline = true,
 	},
 
 	-- Extend LSP configuration
 	lsp = {
-		-- enable servers that you already have installed without lsp-installer
+		-- enable servers that you already have installed without mason
 		servers = {
 			-- "pyright"
 		},
@@ -204,11 +141,11 @@ local config = {
 				-- ["<leader>lf"] = false -- disable formatting keymap
 			},
 		},
-		-- add to the server on_attach function
+		-- add to the global LSP on_attach function
 		-- on_attach = function(client, bufnr)
 		-- end,
 
-		-- override the lsp installer server-registration function
+		-- override the mason server-registration function
 		-- server_registration = function(server, opts)
 		--   require("lspconfig")[server].setup(opts)
 		-- end,
@@ -216,7 +153,7 @@ local config = {
 		-- Add overrides for LSP server settings, the keys are the name of the server
 		["server-settings"] = {
 			-- example for addings schemas to yamlls
-			-- yamlls = {
+			-- yamlls = { -- override table for require("lspconfig").yamlls.setup({...})
 			--   settings = {
 			--     yaml = {
 			--       schemas = {
@@ -227,13 +164,13 @@ local config = {
 			--     },
 			--   },
 			-- },
+			-- Example disabling formatting for a specific language server
+			-- gopls = { -- override table for require("lspconfig").gopls.setup({...})
+			--   on_attach = function(client, bufnr)
+			--     client.resolved_capabilities.document_formatting = false
+			--   end
+			-- }
 		},
-	},
-
-	-- Diagnostics configuration (for vim.diagnostics.config({}))
-	diagnostics = {
-		virtual_text = true,
-		underline = true,
 	},
 
 	-- Mapping data with "desc" stored directly by vim.keymap.set().
@@ -281,7 +218,177 @@ local config = {
 		},
 	},
 
-	-- Modify which-key registration ()
+	-- Configure plugins
+	plugins = {
+		init = {
+			-- Theme
+			{ "marko-cerovac/material.nvim" },
+			{ "folke/tokyonight.nvim" },
+
+			-- Toggle relative numbers
+			{ "jeffkreeftmeijer/vim-numbertoggle" },
+
+			-- Multi-Cursor
+			{ "mg979/vim-visual-multi" },
+
+			-- GitHub Copilot
+			{ "github/copilot.vim" },
+
+			-- Quility of life
+			{ "tpope/vim-surround" },
+			{ "ggandor/lightspeed.nvim" },
+
+			{
+				"folke/todo-comments.nvim",
+				requires = "nvim-lua/plenary.nvim",
+				config = function()
+					require("todo-comments").setup({
+						signs = true, -- show icons in the signs column
+						sign_priority = 8, -- sign priority
+						-- keywords recognized as todo comments
+						keywords = {
+							FIX = {
+								icon = " ", -- icon used for the sign, and in search results
+								color = "error", -- can be a hex color, or a named color (see below)
+								alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+								-- signs = false, -- configure signs for some keywords individually
+							},
+							TODO = { icon = " ", color = "warning", alt = {} },
+							HACK = { icon = " ", color = "warning" },
+							WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+							PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+							NOTE = { icon = " ", color = "info", alt = { "INFO" } },
+							TEST = { icon = "ﭧ ", color = "hint", alt = {} },
+						},
+						merge_keywords = true, -- when true, custom keywords will be merged with the defaults
+						-- highlighting of the line containing the todo comment
+						-- * before: highlights before the keyword (typically comment characters)
+						-- * keyword: highlights of the keyword
+						-- * after: highlights after the keyword (todo text)
+						highlight = {
+							before = "", -- "fg" or "bg" or empty
+							keyword = "bg", -- "fg", "bg", "wide" or empty. (wide is the same as bg, but will also highlight surrounding characters)
+							after = "fg", -- "fg" or "bg" or empty
+							pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlightng (vim regex)
+							comments_only = true, -- uses treesitter to match keywords in comments only
+							max_line_len = 400, -- ignore lines longer than this
+							exclude = {}, -- list of file types to exclude highlighting
+						},
+						-- list of named colors where we try to extract the guifg from the
+						-- list of hilight groups or use the hex color if hl not found as a fallback
+						colors = {
+							error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
+							warning = { "#FBBF24" },
+							info = { "#2563EB" },
+							hint = { "#10B981" },
+							default = { "Identifier", "#7C3AED" },
+						},
+						search = {
+							command = "rg",
+							args = {
+								"--color=never",
+								"--no-heading",
+								"--with-filename",
+								"--line-number",
+								"--column",
+							},
+							-- regex that will be used to match keywords.
+							-- don't replace the (KEYWORDS) placeholder
+							pattern = [[\b(KEYWORDS)\s*:]], -- ripgrep regex
+							-- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
+						},
+					})
+				end,
+			},
+			-- You can disable default plugins as follows:
+			-- ["goolord/alpha-nvim"] = { disable = true },
+
+			-- You can also add new plugins here as well:
+			-- Add plugins, the packer syntax without the "use"
+			-- { "andweeb/presence.nvim" },
+			-- {
+			--   "ray-x/lsp_signature.nvim",
+			--   event = "BufRead",
+			--   config = function()
+			--     require("lsp_signature").setup()
+			--   end,
+			-- },
+
+			-- We also support a key value style plugin definition similar to NvChad:
+			-- ["ray-x/lsp_signature.nvim"] = {
+			--   event = "BufRead",
+			--   config = function()
+			--     require("lsp_signature").setup()
+			--   end,
+			-- },
+		},
+		-- All other entries override the require("<key>").setup({...}) call for default plugins
+		["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
+			-- config variable is the default configuration table for the setup functino call
+			local null_ls = require("null-ls")
+			-- Check supported formatters and linters
+			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
+			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+			config.sources = {
+				-- Set a formatter
+				null_ls.builtins.formatting.stylua,
+				null_ls.builtins.formatting.prettier,
+			}
+			-- set up null-ls's on_attach function
+			-- NOTE: You can remove this on attach function to disable format on save
+			config.on_attach = function(client)
+				if client.resolved_capabilities.document_formatting then
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						desc = "Auto format before save",
+						pattern = "<buffer>",
+						callback = vim.lsp.buf.formatting_sync,
+					})
+				end
+			end
+			return config -- return final config table to use in require("null-ls").setup(config)
+		end,
+		treesitter = { -- overrides `require("treesitter").setup(...)`
+			ensure_installed = { "lua" },
+		},
+		-- use mason-lspconfig to configure LSP installations
+		["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
+			ensure_installed = { "sumneko_lua" },
+		},
+		-- use mason-tool-installer to configure DAP/Formatters/Linter installation
+		["mason-tool-installer"] = { -- overrides `require("mason-tool-installer").setup(...)`
+			ensure_installed = { "prettier", "stylua" },
+		},
+		packer = { -- overrides `require("packer").setup(...)`
+			compile_path = vim.fn.stdpath("data") .. "/packer_compiled.lua",
+		},
+	},
+
+	-- LuaSnip Options
+	luasnip = {
+		-- Add paths for including more VS Code style snippets in luasnip
+		vscode_snippet_paths = {},
+		-- Extend filetypes
+		filetype_extend = {
+			javascript = { "javascriptreact" },
+		},
+	},
+
+	-- CMP Source Priorities
+	-- modify here the priorities of default cmp sources
+	-- higher value == higher priority
+	-- The value can also be set to a boolean for disabling default sources:
+	-- false == disabled
+	-- true == 1000
+	cmp = {
+		source_priority = {
+			nvim_lsp = 1000,
+			luasnip = 750,
+			buffer = 500,
+			path = 250,
+		},
+	},
+
+	-- Modify which-key registration (Use this with mappings table in the above.)
 	["which-key"] = {
 		-- Add bindings which show up as group name
 		register_mappings = {
@@ -292,75 +399,17 @@ local config = {
 					-- third key is the key to bring up next level and its displayed
 					-- group name in which-key top level menu
 					["b"] = { name = "Buffer" },
-					["c"] = { name = "Close" },
 				},
 			},
 		},
 	},
 
-	-- This function is run last
-	-- good place to configuring augroups/autocommands and custom filetypes
+	-- This function is run last and is a good place to configuring
+	-- augroups/autocommands and custom filetypes also this just pure lua so
+	-- anything that doesn't fit in the normal config locations above can go here
 	polish = function()
-		require("todo-comments").setup({
-			signs = true, -- show icons in the signs column
-			sign_priority = 8, -- sign priority
-			-- keywords recognized as todo comments
-			keywords = {
-				FIX = {
-					icon = " ", -- icon used for the sign, and in search results
-					color = "error", -- can be a hex color, or a named color (see below)
-					alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
-					-- signs = false, -- configure signs for some keywords individually
-				},
-				TODO = { icon = " ", color = "warning", alt = {} },
-				HACK = { icon = " ", color = "warning" },
-				WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-				PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-				NOTE = { icon = " ", color = "info", alt = { "INFO" } },
-				TEST = { icon = "ﭧ ", color = "hint", alt = {} },
-			},
-			merge_keywords = true, -- when true, custom keywords will be merged with the defaults
-			-- highlighting of the line containing the todo comment
-			-- * before: highlights before the keyword (typically comment characters)
-			-- * keyword: highlights of the keyword
-			-- * after: highlights after the keyword (todo text)
-			highlight = {
-				before = "", -- "fg" or "bg" or empty
-				keyword = "bg", -- "fg", "bg", "wide" or empty. (wide is the same as bg, but will also highlight surrounding characters)
-				after = "fg", -- "fg" or "bg" or empty
-				pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlightng (vim regex)
-				comments_only = true, -- uses treesitter to match keywords in comments only
-				max_line_len = 400, -- ignore lines longer than this
-				exclude = {}, -- list of file types to exclude highlighting
-			},
-			-- list of named colors where we try to extract the guifg from the
-			-- list of hilight groups or use the hex color if hl not found as a fallback
-			colors = {
-				error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
-				warning = { "#FBBF24" },
-				info = { "#2563EB" },
-				hint = { "#10B981" },
-				default = { "Identifier", "#7C3AED" },
-			},
-			search = {
-				command = "rg",
-				args = {
-					"--color=never",
-					"--no-heading",
-					"--with-filename",
-					"--line-number",
-					"--column",
-				},
-				-- regex that will be used to match keywords.
-				-- don't replace the (KEYWORDS) placeholder
-				pattern = [[\b(KEYWORDS)\s*:]], -- ripgrep regex
-				-- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
-			},
-		})
 		-- Set key binding
 		vim.cmd("imap <silent><script><expr> <C-L> copilot#Accept()")
-		-- vim.cmd("let g:copilot_no_tab_map = v:true");
-
 		-- Set autocommands
 		vim.api.nvim_create_augroup("packer_conf", { clear = true })
 		vim.api.nvim_create_autocmd("BufWritePost", {
