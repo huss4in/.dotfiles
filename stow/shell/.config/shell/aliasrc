@@ -31,3 +31,5 @@ alias \
 alias \
     lg="lazygit"
 
+# explorer.exe
+alias x="explorer.exe ."
