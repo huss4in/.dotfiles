@@ -42,5 +42,10 @@ export NVM_DIR="$HOME/.nvm" && curl https://raw.githubusercontent.com/nvm-sh/nvm
 # Install AstroNvim
 git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 
+# Install Docker
+sh <(curl -fsSL https://get.docker.com)
+sudo usermod -aG docker $USER
+
 # .dotfiles
 rm ~/.zshenv; cd ~/.dotfiles/stow && stow -Svt ~ bash/ neofetch/ rust/ shell/ tmux/ zsh/ AstroNvim/
+
