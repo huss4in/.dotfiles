@@ -9,7 +9,7 @@ fi
 # -- Instant Prompt -- #
 
 # Load aliases
-[[ -f "$HOME/.config/shell/aliasrc" ]] && source "$HOME/.config/shell/aliasrc"
+[[ -f "$HOME/.config/shell/aliasrc.sh" ]] && source "$HOME/.config/shell/aliasrc.sh"
 
 # -- Oh-my-zsh -- #
 
