@@ -8,7 +8,7 @@ export LC_ALL="$LANG"
 export PATH="$HOME/.local/bin:$PATH"
 
 # cargo
-. "$HOME/.cargo/env"
+[ -s "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
