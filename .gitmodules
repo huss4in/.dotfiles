@@ -40,3 +40,6 @@
 [submodule "stow/.dotfiles"]
 	path = stow/.dotfiles
 	url = ssh://github.com/huss4in/dotfiles
+[submodule "stow/AstroNvim/.config/nvim"]
+	path = stow/AstroNvim/.config/nvim
+	url = https://github.com/AstroNvim/AstroNvim
