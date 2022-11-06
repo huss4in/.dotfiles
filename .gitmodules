@@ -37,3 +37,6 @@
 [submodule "stow/zsh/.config/zsh/custom/plugins/zsh-vim-mode"]
 	path = stow/zsh/.config/zsh/custom/plugins/zsh-vim-mode
 	url = https://github.com/softmoth/zsh-vim-mode
+[submodule "stow/.dotfiles"]
+	path = stow/.dotfiles
+	url = ssh://github.com/huss4in/dotfiles
