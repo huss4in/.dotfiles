@@ -3,8 +3,6 @@
 set -eux
 
 sudo apt update -y && sudo apt full-upgrade -y
-sudo apt install software-properties-common -y
-sudo add-apt-repository ppa:neovim-ppa/stable -y
 sudo apt install -y \
   sudo \
   zsh \
@@ -19,33 +17,30 @@ sudo apt install -y \
   ;
 
 # Install Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain stable && \
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile none --default-toolchain stable && \
   source $HOME/.cargo/env && \
-  cargo install exa ripgrep bat fd-find stylua
+  cargo install exa ripgrep bat tealdeer fd-find stylua
 
 # Install Python
 export PYENV_ROOT="$HOME/.pyenv" && curl https://pyenv.run | bash && \
   command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH" && eval "$(pyenv init -)" && \
   pyenv update && \
-  pyenv install 3.10.6 && \
-  pyenv global 3.10.6 && \
+  pyenv install 3.10 && \
+  pyenv global 3.10 && \
   pip install -U pip && \
   pip install -U neovim
 
 # Install Node
-export NVM_DIR="$HOME/.nvm" && curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
+export NVM_DIR="$HOME/.nvm" && mkdir $NVM_DIR && curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
   nvm install --lts && \
   npm install -g npm yarn && \
   npm install -g neovim
-
-# Install AstroNvim
-git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 
 # Install Docker
 sh <(curl -fsSL https://get.docker.com)
 sudo usermod -aG docker $USER
 
 # .dotfiles
-rm ~/.zshenv; cd ~/.dotfiles/stow && stow -Svt ~ bash/ neofetch/ rust/ shell/ tmux/ zsh/ AstroNvim/
+rm ~/.zshenv; cd ~/.dotfiles/stow && stow -Svt ~ */
 
