@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eux
+set -x
 
 sudo apt update -y && sudo apt full-upgrade -y
 sudo apt install -y \
@@ -42,5 +42,6 @@ sh <(curl -fsSL https://get.docker.com)
 sudo usermod -aG docker $USER
 
 # .dotfiles
-rm ~/.zshenv; cd ~/.dotfiles/stow && stow -Svt ~ */
+git clone --recurse-submodules https://github.com/huss4in7/.dotfiles.git ~/.dotfiles
+rm -f ~/.zshenv; cd ~/.dotfiles/stow && stow -Svt ~ */
 
