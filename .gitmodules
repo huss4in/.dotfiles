@@ -31,15 +31,9 @@
 [submodule "stow/zsh/.config/zsh/custom/plugins/zsh-history-substring-search"]
 	path = stow/zsh/.config/zsh/custom/plugins/zsh-history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search
-[submodule "stow/nvim/.config/nvim"]
-	path = stow/nvim/.config/nvim
-	url = https://github.com/AstroNvim/AstroNvim.git
 [submodule "stow/zsh/.config/zsh/custom/plugins/zsh-vim-mode"]
 	path = stow/zsh/.config/zsh/custom/plugins/zsh-vim-mode
 	url = https://github.com/softmoth/zsh-vim-mode
-[submodule "stow/.dotfiles"]
-	path = stow/.dotfiles
-	url = ssh://github.com/huss4in/dotfiles
 [submodule "stow/AstroNvim/.config/nvim"]
 	path = stow/AstroNvim/.config/nvim
 	url = https://github.com/AstroNvim/AstroNvim
