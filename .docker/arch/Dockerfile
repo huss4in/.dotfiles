@@ -33,9 +33,9 @@ USER docker
 WORKDIR /home/docker
 
 # Install Rust
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain stable && \
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile none --default-toolchain stable && \
     source $HOME/.cargo/env && \
-    cargo install exa ripgrep bat fd-find stylua
+    cargo install exa ripgrep bat tealdeer fd-find stylua
 
 # Python
 RUN export PYENV_ROOT="$HOME/.pyenv" && curl https://pyenv.run | bash && \

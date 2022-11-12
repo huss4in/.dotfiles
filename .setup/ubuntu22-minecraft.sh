@@ -17,7 +17,7 @@ sudo apt install -y \
   ;
 
 # Install Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile none --default-toolchain stable && \
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain stable && \
   source $HOME/.cargo/env && \
   cargo install exa ripgrep bat tealdeer fd-find stylua
 
