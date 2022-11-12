@@ -3,6 +3,8 @@
 set -x
 
 sudo apt update -y && sudo apt full-upgrade -y
+sudo apt install software-properties-common -y
+sudo add-apt-repository ppa:neovim-ppa/stable -y
 sudo apt install -y \
   sudo \
   zsh \
