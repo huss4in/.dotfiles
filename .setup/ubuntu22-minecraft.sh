@@ -45,3 +45,4 @@ sudo usermod -aG docker $USER
 git clone --recurse-submodules https://github.com/huss4in7/.dotfiles.git ~/.dotfiles
 rm -f ~/.zshenv; cd ~/.dotfiles/stow && stow -Svt ~ */
 
+sudo chsh -s /bin/zsh "$USER"
