@@ -41,8 +41,8 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --pr
 RUN export PYENV_ROOT="$HOME/.pyenv" && curl https://pyenv.run | bash && \
     command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH" && eval "$(pyenv init -)" && \
     pyenv update && \
-    pyenv install 3.10 && \
-    pyenv global 3.10 && \
+    pyenv install 3.11 && \
+    pyenv global 3.11 && \
     pip install -U pip && \
     pip install -U neovim
 
