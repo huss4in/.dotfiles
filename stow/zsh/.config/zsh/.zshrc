@@ -72,14 +72,8 @@ plugins=(
 
   rust
 
-  pyenv
   python
   pip
-
-  nvm
-  npm
-  node
-  yarn
 
   # aws
 )
