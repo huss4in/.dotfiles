@@ -11,6 +11,9 @@ fi
 # Load aliases
 [[ -f "$HOME/.config/shell/aliasrc.sh" ]] && source "$HOME/.config/shell/aliasrc.sh"
 
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
 # -- Oh-my-zsh -- #
 
 export ZDOTDIR="${ZDOTDIR:-$HOME}"
@@ -97,7 +100,4 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
 # -- Configuration -- #
-
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
