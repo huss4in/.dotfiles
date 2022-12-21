@@ -4,34 +4,12 @@ command -v neofetch &> /dev/null && neofetch
 # -- Instant Prompt -- #
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 # -- Instant Prompt -- #
 
 # Load aliases
 [[ -f "$HOME/.config/shell/aliasrc.sh" ]] && source "$HOME/.config/shell/aliasrc.sh"
-
-# nvm
-lazynvm() {
-  unset -f nvm node npm
-  export NVM_DIR=~/.nvm
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-}
-
-nvm() {
-  lazynvm 
-  nvm $@
-}
-
-node() {
-  lazynvm
-  node $@
-}
-
-npm() {
-  lazynvm
-  npm $@
-}
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
@@ -70,37 +48,33 @@ HISTSIZE=1000000
 SAVEHIST=1000000
 HISTFILE="$ZDOTDIR/.history_zsh"
 
-# export NVM_DIR="$HOME/.config/.nvm"
-# # export NVM_LAZY_LOAD=true
-# export NVM_COMPLETION=true
-
 KEYTIMEOUT=10
 
 plugins=(
-  # zsh plugins
-  zsh-completions
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  zsh-bash-completions-fallback
-  zsh-history-substring-search
+    # zsh plugins
+    zsh-completions
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    zsh-bash-completions-fallback
+    zsh-history-substring-search
 
-  # vi mode
-  zsh-vim-mode
+    # vi mode
+    zsh-vim-mode
 
-  # directory jumping
-  z
-  zsh-interactive-cd
+    # directory jumping
+    z
+    zsh-interactive-cd
 
-  # tools integration
-  git
-  docker
+    # tools integration
+    git
+    docker
 
-  rust
+    rust
 
-  python
-  pip
+    python
+    pip
 
-  # aws
+    # aws
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -123,3 +97,6 @@ bindkey -v '^?' backward-delete-char
 
 # -- Configuration -- #
 
+# Load nvm
+export NVM_DIR=~/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
