@@ -99,4 +99,4 @@ bindkey -v '^?' backward-delete-char
 
 # Load nvm
 export NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && command -v nvm &>/dev/null || . "$NVM_DIR/nvm.sh"
