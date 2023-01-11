@@ -33,24 +33,23 @@ USER docker
 WORKDIR /home/docker
 
 # Install Rust
-RUN curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile none --default-toolchain stable && \
+RUN curl --proto =https --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain stable && \
     source $HOME/.cargo/env && \
-    cargo install exa ripgrep bat tealdeer fd-find stylua
+    cargo install exa bat ripgrep fd-find tealdeer git-delta stylua
 
 # Python
 RUN export PYENV_ROOT="$HOME/.pyenv" && curl https://pyenv.run | bash && \
     command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH" && eval "$(pyenv init -)" && \
     pyenv update && \
-    pyenv install 3 && \
-    pyenv global 3 && \
-    pip install -U pip # neovim
+    pyenv install 3.11 && \
+    pyenv global 3.11 && \
+    pip install -U pip neovim
 
 # Node
 RUN export NVM_DIR="$HOME/.nvm" && mkdir $NVM_DIR && curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
-    nvm install --lts && \
-    npm install -g npm yarn && \
-    npm install -g neovim
+    nvm install 16 && \
+    npm install -g npm yarn neovim
 
 # AstroNvim
 RUN git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
