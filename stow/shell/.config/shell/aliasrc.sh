@@ -1,17 +1,15 @@
+#! /bin/bash
+
 # Realod shell
 function src() {
-  exec $SHELL
+    exec "$SHELL"
 }
-function reload() {
-  source ~/.zshenv
-  source ~/.config/zsh/.zlogin
-  source ~/.config/zsh/.zprofile
-  src
-}
+
+# function
 
 # exa
 alias \
-    exa="exa --icons"\
+    exa="exa --icons" \
     \
     lx="exa" \
     lxl="lx --long" \
@@ -27,27 +25,27 @@ alias \
     \
     lxdg="lxldg" \
     lxldg="lxl --only-dirs --git" \
-    lxadg="lxa --only-dirs --git" \
-    ;
-
+    lxadg="lxa --only-dirs --git"
 
 function _lxt_args() {
-  if ! [[ "$1" =~ "^[0-9]+$" ]]; then echo 3 $@; else echo "$1" ${@:2}; fi
+    if ! [[ "$1" =~ ^[0-9]+$ ]]; then echo 3 "$@"; else echo "$1" "${@:2}"; fi
 }
-function lxt() { lx --tree --level $(_lxt_args $@) }
-function lxlt() { lxl --tree --level $(_lxt_args $@) }
-function lxat() { lxa --tree --level $(_lxt_args $@) }
-function lxdt() { lxld --tree --level $(_lxt_args $@) }
-function lxldt() { lxld --tree --level $(_lxt_args $@) }
-function lxadt() { lxad --tree --level $(_lxt_args $@) }
+function lxt() { lx --tree --level $(_lxt_args "$@"); }
+function lxlt() { lxl --tree --level $(_lxt_args "$@"); }
+function lxat() { lxa --tree --level $(_lxt_args "$@"); }
+function lxdt() { lxld --tree --level $(_lxt_args "$@"); }
+function lxldt() { lxld --tree --level $(_lxt_args "$@"); }
+function lxadt() { lxad --tree --level $(_lxt_args "$@"); }
 
-# vim
-alias \
-    v="nvim"
+# editor
+if command -v nvim &>/dev/null; then
+    alias v=nvim
+fi
 
 # lazygit
-alias \
-    lg="lazygit"
+alias lg="lazygit"
 
 # explorer.exe
-alias exp="explorer.exe"
+if grep -qi microsoft /proc/version; then
+    alias exp="explorer.exe"
+fi
