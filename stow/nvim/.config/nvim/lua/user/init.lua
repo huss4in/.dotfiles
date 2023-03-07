@@ -182,14 +182,29 @@ local config = {
       ["gff"] = { "<cmd>Format<cr>", desc = "Format" },
 
       ["<leader>c"] = { name = "Close", desc = "❌ Close" },
-      ["<leader>cc"] = { function() require("astronvim.utils.buffer").close() end, desc = "Buffer" },
-      ["<leader>ca"] = { function() require("astronvim.utils.buffer").close_all() end, desc = "All buffers" },
-      ["<leader>co"] = { function() require("astronvim.utils.buffer").close_all(true) end, desc = "Other buffers" },
+      ["<leader>cc"] = {
+        function()
+          require("astronvim.utils.buffer").close()
+        end,
+        desc = "Buffer",
+      },
+      ["<leader>ca"] = {
+        function()
+          require("astronvim.utils.buffer").close_all()
+        end,
+        desc = "All buffers",
+      },
+      ["<leader>co"] = {
+        function()
+          require("astronvim.utils.buffer").close_all(true)
+        end,
+        desc = "Other buffers",
+      },
       ["<leader>cb"] = {
         function()
-          require("astronvim.utils.status").heirline.buffer_picker(
-            function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
-          )
+          require("astronvim.utils.status").heirline.buffer_picker(function(bufnr)
+            require("astronvim.utils.buffer").close(bufnr)
+          end)
         end,
         desc = "Pick buffer",
       },
@@ -470,7 +485,7 @@ local config = {
     -- }
 
     -- Set key binding
-    vim.cmd "imap <silent><script><expr> <C-L> copilot#Accept()"
+    vim.cmd("imap <silent><script><expr> <C-L> copilot#Accept()")
   end,
 }
 
