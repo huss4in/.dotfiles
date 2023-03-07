@@ -84,9 +84,10 @@ source $ZSH/oh-my-zsh.sh
 # -- Configuration -- #
 
 # Completion
-autoload -U compinit && compinit
+autoload -U compinit; compinit
 autoload -U +X bashcompinit && bashcompinit
 zstyle ':completion:*' menu select
+# command -v rtx &> /dev/null && rtx complete --shell zsh > "$fpath[1]}/_rtx"
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
@@ -96,7 +97,3 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
 # -- Configuration -- #
-
-# Load nvm
-export NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && command -v nvm &>/dev/null || . "$NVM_DIR/nvm.sh"
