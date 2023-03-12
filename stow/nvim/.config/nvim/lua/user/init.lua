@@ -13,7 +13,7 @@ local config = {
     remote = "origin", -- remote to use
     channel = "nightly", -- "stable" or "nightly"
     version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
-    branch = "nightly", -- branch name (NIGHTLY ONLY)
+    branch = "main", -- branch name (NIGHTLY ONLY)
     commit = nil, -- commit hash (NIGHTLY ONLY)
     pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
     skip_prompts = false, -- skip prompts about breaking changes
@@ -123,6 +123,7 @@ local config = {
     mappings = {
       n = {
         -- ["<leader>lf"] = false -- disable formatting keymap
+        ["gff"] = { "<cmd>Format<cr>", desc = "Format" },
       },
     },
     -- add to the global LSP on_attach function
@@ -179,8 +180,6 @@ local config = {
       ["<A-j>"] = { ":m .+1<cr>==", desc = "Move line up" },
       ["<A-k>"] = { ":m .-2<cr>==", desc = "Move line down" },
 
-      ["gff"] = { "<cmd>Format<cr>", desc = "Format" },
-
       ["<leader>c"] = { name = "Close", desc = "❌ Close" },
       ["<leader>cc"] = {
         function()
@@ -223,10 +222,13 @@ local config = {
       ["<leader>y"] = { '"+y', desc = "Yank to clipboard" },
       ["D"] = { '"_d', desc = "Delete to void" },
 
+      [">"] = { ">gv" },
+      ["<"] = { "<gv" },
+
       ["<S-j>"] = { "j" },
       ["<S-k>"] = { "k" },
-      ["<A-j>"] = { ":m '>+1<cr>gv=gv", desc = "Move line up" },
-      ["<A-k>"] = { ":m '<-2<cr>gv=gv", desc = "Move line down" },
+      ["<A-j>"] = { ":m '>+1<cr><esc>gv=gv", desc = "Move line up" },
+      ["<A-k>"] = { ":m '<-2<cr><esc>gv=gv", desc = "Move line down" },
     },
     t = {
       -- setting a mapping to false will disable it
@@ -272,13 +274,12 @@ local config = {
     { "github/copilot.vim", lazy = false }, -- GitHub Copilot
 
     { "rust-lang/rust.vim" }, -- Rust
-
-    {
-      "saecki/crates.nvim",
-      -- event = "BufRead Cargo.toml",
-      requires = { "nvim-lua/plenary.nvim" },
-      lazy = false,
-    }, -- Creates
+    -- {
+    --   "saecki/crates.nvim",
+    --   event = "BufRead Cargo.toml",
+    --   requires = { "nvim-lua/plenary.nvim" },
+    --   lazy = false,
+    -- }, -- Creates
 
     -- { -- override nvim-autopairs plugin
     --   "hrsh7th/nvim-cmp",
