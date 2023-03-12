@@ -446,11 +446,11 @@ local config = {
       breadcrumbs = " -> ",
       tab = { "", "" },
     },
-    -- -- Customize colors for each element each element has a `_fg` and a `_bg`
-    -- colors = function(colors)
-    --   colors.git_branch_fg = require("astronvim.utils").get_hlgroup "Conditional"
-    --   return colors
-    -- end,
+    -- Customize colors for each element each element has a `_fg` and a `_bg`
+    --colors = function(colors)
+    --  colors.git_branch_fg = require("astronvim.utils").get_hlgroup "Conditional"
+    --  return colors
+    --end,
     -- Customize attributes of highlighting in Heirline components
     attributes = {
       -- styling choices for each heirline element, check possible attributes with `:h attr-list`
