@@ -261,11 +261,41 @@ local config = {
     { "marko-cerovac/material.nvim" }, -- Material Theme
     { "folke/tokyonight.nvim" }, --Tokyonight Theme
 
-    { "jeffkreeftmeijer/vim-numbertoggle", lazy = false }, -- Toggle relative numbers
+    { "sitiom/nvim-numbertoggle", lazy = false }, -- Toggle relative numbers
 
     { "tpope/vim-surround", lazy = false }, -- Surround
 
     { "psliwka/vim-smoothie", lazy = false }, -- Smooth scroll
+
+    {
+      "gbprod/substitute.nvim",
+      lazy = false,
+      config = function()
+        require("substitute").setup({
+          on_substitute = nil,
+          yank_substituted_text = false,
+          range = {
+            prefix = "s",
+            prompt_current_text = false,
+            confirm = false,
+            complete_word = false,
+            motion1 = false,
+            motion2 = false,
+            suffix = "",
+          },
+          exchange = {
+            motion = false,
+            use_esc_to_cancel = true,
+          },
+        })
+
+        -- Lua
+        vim.keymap.set("n", "x", "<cmd>lua require('substitute').operator()<cr>", { noremap = true })
+        vim.keymap.set("n", "xx", "<cmd>lua require('substitute').line()<cr>", { noremap = true })
+        vim.keymap.set("n", "X", "<cmd>lua require('substitute').eol()<cr>", { noremap = true })
+        vim.keymap.set("x", "x", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
+      end,
+    }, -- Substitute
 
     { "ggandor/lightspeed.nvim", lazy = false }, -- Lightspeed
 
@@ -274,6 +304,7 @@ local config = {
     { "github/copilot.vim", lazy = false }, -- GitHub Copilot
 
     { "rust-lang/rust.vim" }, -- Rust
+
     -- {
     --   "saecki/crates.nvim",
     --   event = "BufRead Cargo.toml",
