@@ -174,38 +174,37 @@ local config = {
       -- quick save
       -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
 
-      ["<leader>y"] = { '"+y', desc = "Yank to clipboard" },
-      ["<leader>D"] = { '"_d', desc = "Delete to void" },
-
       ["<A-j>"] = { ":m .+1<cr>==", desc = "Move line up" },
       ["<A-k>"] = { ":m .-2<cr>==", desc = "Move line down" },
 
+      ["<leader>y"] = { '"+y', desc = "Yank to clipboard" },
+      ["<leader>D"] = { '"_d', desc = "Delete to void" },
+
       ["<leader>c"] = { name = "Close", desc = "❌ Close" },
       ["<leader>cc"] = {
-        function()
-          require("astronvim.utils.buffer").close()
-        end,
+        function() require("astronvim.utils.buffer").close() end,
         desc = "Buffer",
       },
       ["<leader>ca"] = {
-        function()
-          require("astronvim.utils.buffer").close_all()
-        end,
+        function() require("astronvim.utils.buffer").close_all() end,
         desc = "All buffers",
       },
       ["<leader>co"] = {
-        function()
-          require("astronvim.utils.buffer").close_all(true)
-        end,
+        function() require("astronvim.utils.buffer").close_all(true) end,
         desc = "Other buffers",
       },
       ["<leader>cb"] = {
         function()
-          require("astronvim.utils.status").heirline.buffer_picker(function(bufnr)
-            require("astronvim.utils.buffer").close(bufnr)
-          end)
+          require("astronvim.utils.status").heirline.buffer_picker(
+            function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
+          )
         end,
         desc = "Pick buffer",
+      },
+
+      ['<leader>f"'] = {
+        ":Telescope registers<cr>",
+        desc = "Find registers",
       },
 
       ["<leader>/"] = false,
@@ -266,36 +265,6 @@ local config = {
     { "tpope/vim-surround", lazy = false }, -- Surround
 
     { "psliwka/vim-smoothie", lazy = false }, -- Smooth scroll
-
-    {
-      "gbprod/substitute.nvim",
-      lazy = false,
-      config = function()
-        require("substitute").setup({
-          on_substitute = nil,
-          yank_substituted_text = false,
-          range = {
-            prefix = "s",
-            prompt_current_text = false,
-            confirm = false,
-            complete_word = false,
-            motion1 = false,
-            motion2 = false,
-            suffix = "",
-          },
-          exchange = {
-            motion = false,
-            use_esc_to_cancel = true,
-          },
-        })
-
-        -- Lua
-        vim.keymap.set("n", "x", "<cmd>lua require('substitute').operator()<cr>", { noremap = true })
-        vim.keymap.set("n", "xx", "<cmd>lua require('substitute').line()<cr>", { noremap = true })
-        vim.keymap.set("n", "X", "<cmd>lua require('substitute').eol()<cr>", { noremap = true })
-        vim.keymap.set("x", "x", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
-      end,
-    }, -- Substitute
 
     { "ggandor/lightspeed.nvim", lazy = false }, -- Lightspeed
 
@@ -517,7 +486,7 @@ local config = {
     -- }
 
     -- Set key binding
-    vim.cmd("imap <silent><script><expr> <C-L> copilot#Accept()")
+    vim.cmd "imap <silent><script><expr> <C-L> copilot#Accept()"
   end,
 }
 
