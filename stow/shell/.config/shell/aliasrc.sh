@@ -28,7 +28,7 @@ alias \
     lxadg="lxa --only-dirs --git"
 
 function _lxt_args() {
-    if ! [[ "$1" =~ ^[0-9]+$ ]]; then echo 3 "$@"; else echo "$1" "${@:2}"; fi
+    if ! [[ "$1" =~ ^[0-9]+$ ]]; then echo 2 "$@"; else echo "$1" "${@:2}"; fi
 }
 function lxt() { lx --tree --level $(_lxt_args "$@"); }
 function lxlt() { lxl --tree --level $(_lxt_args "$@"); }

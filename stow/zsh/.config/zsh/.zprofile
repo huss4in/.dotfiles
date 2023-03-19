@@ -11,4 +11,4 @@ export PATH="$HOME/.local/bin:$PATH"
 [ -s "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 # rtx
-eval "$(rtx activate zsh)"
+command -v rtx &>/dev/null && eval "$(rtx activate zsh)"
