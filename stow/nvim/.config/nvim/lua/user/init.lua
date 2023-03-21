@@ -155,6 +155,13 @@ local config = {
       --     },
       --   },
       -- },
+      lua = {
+        settings = {
+          Lua = {
+            diagnostics = { globals = { "vim" } },
+          },
+        },
+      },
     },
   },
 
@@ -263,8 +270,38 @@ local config = {
     { "sitiom/nvim-numbertoggle", lazy = false }, -- Toggle relative numbers
 
     { "tpope/vim-surround", lazy = false }, -- Surround
-
     { "psliwka/vim-smoothie", lazy = false }, -- Smooth scroll
+    {
+      "m-demare/hlargs.nvim",
+      lazy = false,
+      requires = { "nvim-treesitter/nvim-treesitter" },
+      config = function() require("hlargs").setup() end,
+    }, -- Smooth scroll
+    -- { "vim-scripts/argtextobj.vim", lazy = false }, -- argtextobj
+
+    -- Substitute
+    {
+      "gbprod/substitute.nvim",
+      lazy = false,
+      config = function()
+        require("substitute").setup {}
+
+        local x = { noremap = true }
+
+        -- Swap
+        vim.keymap.set("n", "Xs", require("substitute").operator, x)
+        vim.keymap.set("n", "Xss", require("substitute").line, x)
+        vim.keymap.set("n", "XS", require("substitute").eol, x)
+        vim.keymap.set("x", "Xs", require("substitute").visual, x)
+
+        -- Exchange
+        vim.keymap.set("n", "Xc", require("substitute.exchange").operator, x)
+        vim.keymap.set("n", "Xcc", require("substitute.exchange").line, x)
+        vim.keymap.set("x", "Xc", require("substitute.exchange").visual, x)
+        -- vim.keymap.set("n", "xcx", require("substitute.exchange").cancel, x)
+        -- vim.keymap.set("x", "xcx", require("substitute.exchange").cancel, x)
+      end,
+    },
 
     { "ggandor/lightspeed.nvim", lazy = false }, -- Lightspeed
 
@@ -273,37 +310,6 @@ local config = {
     { "github/copilot.vim", lazy = false }, -- GitHub Copilot
 
     { "rust-lang/rust.vim" }, -- Rust
-
-    -- {
-    --   "saecki/crates.nvim",
-    --   event = "BufRead Cargo.toml",
-    --   requires = { "nvim-lua/plenary.nvim" },
-    --   lazy = false,
-    -- }, -- Creates
-
-    -- { -- override nvim-autopairs plugin
-    --   "hrsh7th/nvim-cmp",
-    --   dependencies = {
-    --     "saecki/crates.nvim", -- add cmp source as dependency of cmp
-    --   },
-    --   -- override the options table that is used in the `require("cmp").setup()` call
-    --   opts = function(_, opts)
-    --     -- opts parameter is the default options table
-    --     -- the function is lazy loaded so cmp is able to be required
-    --     local cmp = require "cmp"
-    --     -- modify the sources part of the options table
-    --     opts.sources = cmp.config.sources {
-    --       { name = "nvim_lsp", priority = 1000 },
-    --       { name = "luasnip", priority = 750 },
-    --       { name = "buffer", priority = 500 },
-    --       { name = "path", priority = 250 },
-    --       { name = "crates", priority = 1500 }, -- add new source
-    --     }
-    --
-    --     -- return the new table to be used
-    --     return opts
-    --   end,
-    -- },
 
     -- You can disable default plugins as follows:
     -- { "max397574/better-escape.nvim", enabled = false },
@@ -420,6 +426,11 @@ local config = {
       -- overrides `require("mason-lspconfig").setup(...)`
       opts = {
         -- ensure_installed = { "lua_ls" },
+        settings = {
+          Lua = {
+            diagnostics = { globals = { "vim" } },
+          },
+        },
       },
     },
     -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
