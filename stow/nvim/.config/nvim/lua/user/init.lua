@@ -188,25 +188,31 @@ local config = {
       ["<leader>D"] = { '"_d', desc = "Delete to void" },
 
       ["<leader>c"] = { name = "Close", desc = "❌ Close" },
-      ["<leader>cc"] = {
-        function() require("astronvim.utils.buffer").close() end,
-        desc = "Buffer",
-      },
       ["<leader>ca"] = {
-        function() require("astronvim.utils.buffer").close_all() end,
+        function()
+          require("astronvim.utils.buffer").close_all()
+        end,
         desc = "All buffers",
-      },
-      ["<leader>co"] = {
-        function() require("astronvim.utils.buffer").close_all(true) end,
-        desc = "Other buffers",
       },
       ["<leader>cb"] = {
         function()
-          require("astronvim.utils.status").heirline.buffer_picker(
-            function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
-          )
+          require("astronvim.utils.status").heirline.buffer_picker(function(bufnr)
+            require("astronvim.utils.buffer").close(bufnr)
+          end)
         end,
         desc = "Pick buffer",
+      },
+      ["<leader>co"] = {
+        function()
+          require("astronvim.utils.buffer").close_all(true)
+        end,
+        desc = "Other buffers",
+      },
+      ["<leader>cc"] = {
+        function()
+          require("astronvim.utils.buffer").close()
+        end,
+        desc = "Current Buffer",
       },
 
       ['<leader>f"'] = {
@@ -271,11 +277,14 @@ local config = {
 
     { "tpope/vim-surround", lazy = false }, -- Surround
     { "psliwka/vim-smoothie", lazy = false }, -- Smooth scroll
+    -- { "vim-scripts/argtextobj.vim", lazy = false }, -- Argtextobj
     {
       "m-demare/hlargs.nvim",
       lazy = false,
       requires = { "nvim-treesitter/nvim-treesitter" },
-      config = function() require("hlargs").setup() end,
+      config = function()
+        require("hlargs").setup()
+      end,
     }, -- Smooth scroll
     -- { "vim-scripts/argtextobj.vim", lazy = false }, -- argtextobj
 
@@ -284,7 +293,7 @@ local config = {
       "gbprod/substitute.nvim",
       lazy = false,
       config = function()
-        require("substitute").setup {}
+        require("substitute").setup({})
 
         local x = { noremap = true }
 
@@ -497,7 +506,7 @@ local config = {
     -- }
 
     -- Set key binding
-    vim.cmd "imap <silent><script><expr> <C-L> copilot#Accept()"
+    vim.cmd("imap <silent><script><expr> <C-L> copilot#Accept()")
   end,
 }
 
