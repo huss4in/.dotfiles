@@ -38,9 +38,11 @@ function lxldt() { lxld --tree --level $(_lxt_args "$@"); }
 function lxadt() { lxad --tree --level $(_lxt_args "$@"); }
 
 # editor
-if command -v nvim &>/dev/null; then
-    alias v=nvim
-fi
+# if command -v nvim &>/dev/null; then
+#     alias v=nvim
+# fi
+command -v nvim &>/dev/null && alias vm=nvim
+command -v helix &>/dev/null && alias hx=helix
 
 # lazygit
 alias lg="lazygit"
