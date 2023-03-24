@@ -277,7 +277,7 @@ local config = {
 
     { "tpope/vim-surround", lazy = false }, -- Surround
     { "psliwka/vim-smoothie", lazy = false }, -- Smooth scroll
-    -- { "vim-scripts/argtextobj.vim", lazy = false }, -- Argtextobj
+
     {
       "m-demare/hlargs.nvim",
       lazy = false,
