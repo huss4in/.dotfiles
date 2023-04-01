@@ -13,9 +13,11 @@ alias lg="lazygit"
 
 # tmux
 function tx() {
-    [[ -n "$2" ]] && ( tmux attach -t "$1" -c "$2" 2>/dev/null && return || cd "$2" )
-
-    tmux new -As "$1"
+    if [[ -n "$2" ]]; then
+        tmux attach -t "$1" -c "$2" 2>/dev/null || (cd "$2" && tmux new -As "$1")
+    else
+        tmux new -As "$1"
+    fi
 }
 
 # exa
