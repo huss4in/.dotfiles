@@ -1,5 +1,5 @@
 # System fetch
-command -v neofetch &> /dev/null && neofetch
+command -v neofetch &>/dev/null && neofetch
 
 # -- Instant Prompt -- #
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
@@ -9,7 +9,7 @@ fi
 # -- Instant Prompt -- #
 
 # Load aliases
-[[ -f "$HOME/.config/shell/aliasrc.sh" ]] && source "$HOME/.config/shell/aliasrc.sh"
+[[ -f "$HOME/.config/bash/.aliases" ]] && source "$HOME/.config/bash/.aliases"
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
