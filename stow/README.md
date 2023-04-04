@@ -5,5 +5,5 @@ stow --no --stow --verbose --target ~ bash/ neofetch/ rust/ shell/ tmux/ zsh/ As
 ```
 
 ```sh
-stow -nSvt ~ bash/ neofetch/ rust/ shell/ tmux/ zsh/ AstroNvim/
+stow -nSvt ~ */
 ```
