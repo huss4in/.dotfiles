@@ -63,7 +63,7 @@ plugins=(
 
     # directory jumping
     z
-    zsh-interactive-cd
+    # zsh-interactive-cd
 
     # tools integration
     git
