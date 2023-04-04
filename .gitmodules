@@ -34,9 +34,13 @@
 [submodule "stow/zsh/.config/zsh/custom/plugins/zsh-vim-mode"]
 	path = stow/zsh/.config/zsh/custom/plugins/zsh-vim-mode
 	url = https://github.com/softmoth/zsh-vim-mode
+
+#nvim
 [submodule "stow/AstroNvim/.config/nvim"]
 	path = stow/AstroNvim/.config/nvim
 	url = https://github.com/AstroNvim/AstroNvim
 [submodule "stow/nvim/.config/nvim/lua/user"]
 	path = stow/nvim/.config/nvim/lua/user
 	url = https://github.com/huss4in/user_astronvim
+
+#others
