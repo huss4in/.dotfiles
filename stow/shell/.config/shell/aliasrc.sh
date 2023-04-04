@@ -25,7 +25,7 @@ alias \
     exa="exa --icons" \
     \
     lx="exa" \
-    lxl="lx --long" \
+    lxl="lx --long --group --header" \
     lxa="lxl --all --group --header" \
     \
     lxd="lx --only-dirs" \
