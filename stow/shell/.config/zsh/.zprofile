@@ -12,3 +12,4 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # rtx
 command -v rtx &>/dev/null && eval "$(rtx activate zsh)"
+

@@ -85,7 +85,6 @@ source $ZSH/oh-my-zsh.sh
 autoload -U compinit; compinit
 autoload -U +X bashcompinit && bashcompinit
 zstyle ':completion:*' menu select
-# command -v rtx &> /dev/null && rtx complete --shell zsh > "$fpath[1]}/_rtx"
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
