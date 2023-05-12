@@ -95,6 +95,7 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
+unsetopt autopushd
 # -- Configuration -- #
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.

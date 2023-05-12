@@ -5,6 +5,10 @@ function src() {
 	exec "$SHELL"
 }
 
+function update() {
+	 sudo pacman -Syu && pushd ~/.dotfiles && git pull && for DIR in $(git submodule foreach -q sh -c pwd); do cd "$DIR" && git pull & done && wait && cd ~/.dotfiles && lazygit && popd || echo "Update failed!"
+}
+
 # aliases
 alias v="nvim"
 alias hx="helix"
