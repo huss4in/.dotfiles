@@ -6,7 +6,15 @@ function src() {
 }
 
 function update() {
-	 sudo pacman -Syu && pushd ~/.dotfiles && git pull && for DIR in $(git submodule foreach -q sh -c pwd); do cd "$DIR" && git pull & done && wait && cd ~/.dotfiles && lazygit && popd || echo "Update failed!"
+	sudo pacman -Syu &&
+		pushd ~/.dotfiles &&
+		git pull &&
+		for DIR in $(git submodule foreach -q sh -c pwd); do
+			cd "$DIR" && git pull origin "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" &
+		done &&
+		wait &&
+		cd ~/.dotfiles && lazygit &&
+		popd || echo "Update failed!"
 }
 
 # aliases
