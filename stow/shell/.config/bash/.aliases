@@ -6,17 +6,19 @@ function src() {
 }
 
 function update() {
-	sudo pacman -Syu &&
+	sudo pacman -Syu && echo &&
 		pushd ~/.dotfiles &&
-		git pull &&
+		git pull && echo &&
 		(
-			command -v parallel &>/dev/null && parallel 'cd {} && git pull origin $(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")"' ::: "$(git submodule foreach -q sh -c pwd)" ||
+			command -v parallel &>/dev/null && parallel 'cd {} && echo {} && git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" &>/dev/null && git -c color.ui=always pull || echo -n' ::: $(git submodule foreach -q sh -c pwd) &&
 				for DIR in $(git submodule foreach -q sh -c pwd); do
-					cd "$DIR" && git pull origin "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" &
+					cd "$DIR" && echo "$DIR" && git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" &>/dev/null && git -c color.ui=always pull || echo -n &
 				done && wait
 		) &&
-		cd ~/.dotfiles && lazygit &&
-		popd || echo "Update failed!"
+		cd ~/.dotfiles &&
+		lazygit &&
+		(popd 2>/dev/null || echo -n) ||
+		echo "Update failed!"
 }
 
 # aliases
