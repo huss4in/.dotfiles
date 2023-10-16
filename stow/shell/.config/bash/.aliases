@@ -15,9 +15,8 @@ function update() {
 					cd "$DIR" && echo "$DIR" && git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" &>/dev/null && git -c color.ui=always pull || echo -n &
 				done && wait
 		) &&
-		cd ~/.dotfiles &&
 		lazygit &&
-		(popd 2>/dev/null || echo -n) ||
+		popd ||
 		echo "Update failed!"
 }
 
