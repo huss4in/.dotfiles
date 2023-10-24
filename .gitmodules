@@ -1,54 +1,54 @@
-# tmux
-[submodule "stow/tmux/.config/tmux/plugins/tpm"]
-	path = stow/tmux/.config/tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
-	branch = master
-[submodule "stow/tmux/.config/tmux/plugins/tmux-sensible"]
-	path = stow/tmux/.config/tmux/plugins/tmux-sensible
-	url = https://github.com/tmux-plugins/tmux-sensible
-	branch = master
-[submodule "stow/tmux/.config/tmux/plugins/tmux-power"]
-	path = stow/tmux/.config/tmux/plugins/tmux-power
-	url = https://github.com/huss4in7/tmux-power
-	branch = master
-
 # zsh
 [submodule "stow/shell/.config/zsh/.oh-my-zsh"]
-	path = stow/shell/.config/zsh/.oh-my-zsh
+	path = shell/.config/zsh/.oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh
 	branch = master
 [submodule "stow/shell/.config/zsh/custom/themes/powerlevel10k"]
-	path = stow/shell/.config/zsh/custom/themes/powerlevel10k
+	path = shell/.config/zsh/custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
 	branch = master
 [submodule "stow/shell/.config/zsh/custom/plugins/zsh-completions"]
-	path = stow/shell/.config/zsh/custom/plugins/zsh-completions
+	path = shell/.config/zsh/custom/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
 	branch = master
 [submodule "stow/shell/.config/zsh/custom/plugins/zsh-autosuggestions"]
-	path = stow/shell/.config/zsh/custom/plugins/zsh-autosuggestions
+	path = shell/.config/zsh/custom/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
 	branch = master
 [submodule "stow/shell/.config/zsh/custom/plugins/zsh-syntax-highlighting"]
-	path = stow/shell/.config/zsh/custom/plugins/zsh-syntax-highlighting
+	path = shell/.config/zsh/custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
 	branch = master
 [submodule "stow/shell/.config/zsh/custom/plugins/zsh-bash-completions-fallback"]
-	path = stow/shell/.config/zsh/custom/plugins/zsh-bash-completions-fallback
+	path = shell/.config/zsh/custom/plugins/zsh-bash-completions-fallback
 	url = https://github.com/3v1n0/zsh-bash-completions-fallback
 	branch = master
 [submodule "stow/shell/.config/zsh/custom/plugins/zsh-history-substring-search"]
-	path = stow/shell/.config/zsh/custom/plugins/zsh-history-substring-search
+	path = shell/.config/zsh/custom/plugins/zsh-history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search
 	branch = master
 [submodule "stow/shell/.config/zsh/custom/plugins/zsh-vim-mode"]
-	path = stow/shell/.config/zsh/custom/plugins/zsh-vim-mode
+	path = shell/.config/zsh/custom/plugins/zsh-vim-mode
 	url = https://github.com/softmoth/zsh-vim-mode
 	branch = main
 
+# tmux
+[submodule "stow/tmux/.config/tmux/plugins/tpm"]
+	path = tmux/.config/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+	branch = master
+[submodule "stow/tmux/.config/tmux/plugins/tmux-sensible"]
+	path = tmux/.config/tmux/plugins/tmux-sensible
+	url = https://github.com/tmux-plugins/tmux-sensible
+	branch = master
+[submodule "stow/tmux/.config/tmux/plugins/tmux-power"]
+	path = tmux/.config/tmux/plugins/tmux-power
+	url = https://github.com/huss4in7/tmux-power
+	branch = master
+
 #nvim
 [submodule "stow/nvim/.config/nvim/lua/user"]
-	path = stow/nvim/.config/nvim/lua/user
+	path = nvim/.config/nvim/lua/user
 	url = https://github.com/huss4in/user_astronvim
 	branch = main
 
