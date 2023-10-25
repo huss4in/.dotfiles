@@ -8,16 +8,18 @@ function src() {
 
 function update() {
 
-	declare -A osInfo;
-	osInfo[/etc/debian_version]="apt-get update && apt-get upgrade"
-	osInfo[/etc/arch_version]="pacman -Syu"
-	osInfo[/etc/alpine-release]="apk -U upgrade"
+	osInfo=("/etc/debian_version:apt-get update && apt-get upgrade"
+		"/etc/arch-release:pacman -Syu"
+		"/etc/alpine-release:apk -U upgrade")
 
-	for f in "${!osInfo[@]}"
-	do
-    	if [[ -f $f ]];then
-        	update_distro=${osInfo[$f]}
-    	fi
+	for info in "${osInfo[@]}"; do
+		os_file="${info%%:*}"
+		update_command="${info#*:}"
+
+		if [ -f "$os_file" ]; then
+			update_distro="$update_command"
+			break
+		fi
 	done
 
 	sudo sh -c "${update_distro}" && echo &&
