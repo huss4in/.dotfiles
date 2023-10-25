@@ -66,6 +66,7 @@ plugins=(
     # tools integration
     git
     docker
+    docker-compose
 
     rust
 

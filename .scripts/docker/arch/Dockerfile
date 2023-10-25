@@ -41,7 +41,7 @@ RUN git clone --recurse-submodules https://github.com/huss4in7/.dotfiles.git ~/.
 RUN git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 
 # Configure .dotfiles
-RUN rm -rd ~/.zshenv; cd ~/.dotfiles/stow && stow -Svt ~ */
+RUN rm -rd ~/.zshenv; cd ~/.dotfiles && stow -Svt ~ */
 
 # Start command
 CMD [ "/bin/zsh" ]
