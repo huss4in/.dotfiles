@@ -22,6 +22,11 @@ function update() {
 		fi
 	done
 
+	if [ -z "$update_distro" ]; then
+		printf "Woow! New distro!\n"
+		return 1
+	fi
+
 	sudo sh -c "${update_distro}" && echo &&
 		pushd ~/.dotfiles &&
 		git pull && echo &&
