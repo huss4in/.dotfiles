@@ -8,7 +8,19 @@ function src() {
 
 function update() {
 
-	sudo pacman -Syu && echo &&
+	declare -A osInfo;
+	osInfo[/etc/debian_version]="apt-get update && apt-get upgrade"
+	osInfo[/etc/arch_version]="pacman -Syu"
+	osInfo[/etc/alpine-release]="apk -U upgrade"
+
+	for f in "${!osInfo[@]}"
+	do
+    	if [[ -f $f ]];then
+        	update_distro=${osInfo[$f]}
+    	fi
+	done
+
+	sudo sh -c "${update_distro}" && echo &&
 		pushd ~/.dotfiles &&
 		git pull && echo &&
 		parallel 'cd {} && echo {} && git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" &>/dev/null && git -c color.ui=always pull' ::: "$(git submodule foreach -q sh -c pwd)" &&
