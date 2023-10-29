@@ -1,6 +1,12 @@
 #! /bin/bash
 # shellcheck disable=2016,2046,2164
 
+# aliases
+alias v="nvim"
+alias hx="helix"
+alias lg="lazygit"
+alias md="mkdir -p"
+
 # Realod shell
 function src() {
 	exec "$SHELL"
@@ -37,11 +43,6 @@ function update-dotfiles() {
 
 	popd &>/dev/null
 }
-
-# aliases
-alias v="nvim"
-alias hx="helix"
-alias lg="lazygit"
 
 # tmux
 function tx() {
