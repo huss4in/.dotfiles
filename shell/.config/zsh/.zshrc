@@ -1,3 +1,6 @@
+# Load aliases
+[[ -f "$HOME/.config/bash/.aliases" ]] && source "$HOME/.config/bash/.aliases"
+
 # System fetch
 command -v neofetch &>/dev/null && neofetch
 
@@ -6,11 +9,9 @@ command -v neofetch &>/dev/null && neofetch
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 # -- Instant Prompt -- #
-
-# Load aliases
-[[ -f "$HOME/.config/bash/.aliases" ]] && source "$HOME/.config/bash/.aliases"
 
 # -- Oh-my-zsh -- #
 
@@ -25,7 +26,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Update reminder
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-zstyle ':omz:update' frequency 7
+zstyle ':omz:update' frequency 2
 
 # zsh options
 HYPHEN_INSENSITIV="true"
@@ -84,10 +85,23 @@ source $ZSH/oh-my-zsh.sh
 
 # -- Configuration -- #
 
-# Completion
-autoload -U compinit; compinit
-autoload -U +X bashcompinit && bashcompinit
+# Completion.
+autoload -Uz compinit; compinit
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
+zstyle ':completion:*' rehash true                              # automatically find new executables in path 
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
+zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' menu select
+zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
+zstyle ':completion:*:descriptions' format '%U%F{cyan}%d%f%u'
+
+# Speed up completions
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.cache/zcache
+
+# automatically load bash completion functions
+autoload -U +X bashcompinit && bashcompinit
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
@@ -97,8 +111,8 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
 unsetopt autopushd
+
 # -- Configuration -- #
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-
