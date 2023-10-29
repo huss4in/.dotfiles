@@ -70,6 +70,7 @@ plugins=(
     docker-compose
 
     rust
+    rtx
 
     python
     pip

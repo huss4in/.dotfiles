@@ -9,7 +9,3 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # cargo
 [ -s "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
-
-# rtx
-command -v rtx &>/dev/null && eval "$(rtx activate zsh)"
-
