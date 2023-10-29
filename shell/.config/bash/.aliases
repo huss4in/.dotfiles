@@ -6,7 +6,7 @@ function src() {
 	exec "$SHELL"
 }
 
-function update() {
+function update-dotfiles() {
 
 	osInfo=("/etc/debian_version:apt-get update && apt-get upgrade"
 		"/etc/arch-release:pacman -Syu"
