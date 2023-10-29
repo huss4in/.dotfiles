@@ -44,7 +44,7 @@ cursor:
 live_config_reload: true
 
 shell:
-  program: /usr/bin/zsh
+  program: /bin/zsh
   args:
     - --login
 

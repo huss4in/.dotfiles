@@ -30,7 +30,7 @@ USER docker
 WORKDIR /home/docker
 
 # Install Rust
-RUN curl --proto =https --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     source $HOME/.cargo/env && \
     cargo install exa bat ripgrep fd-find rtx-cli bottom git-delta du-dust tealdeer stylua cargo-update
 
