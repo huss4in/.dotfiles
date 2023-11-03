@@ -2,4 +2,3 @@
 node = 'latest'
 python = 'latest'
 go = 'latest'
-lazygit = 'latest'
