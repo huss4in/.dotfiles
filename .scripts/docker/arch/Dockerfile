@@ -32,7 +32,7 @@ WORKDIR /home/docker
 # Install Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     source $HOME/.cargo/env && \
-    cargo install exa bat ripgrep fd-find rtx-cli bottom git-delta du-dust tealdeer stylua cargo-update
+    cargo install exa bat ripgrep fd-find rtx-cli bottom hwatch git-delta du-dust tealdeer stylua cargo-update
 
 # Clone .dotfiles
 RUN git clone --recurse-submodules https://github.com/huss4in7/.dotfiles.git ~/.dotfiles
