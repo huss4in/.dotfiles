@@ -1,5 +1,5 @@
 #! /bin/bash
-# shellcheck disable=2016,2046,2164
+# shellcheck disable=2016,2046,2164,2035
 
 # aliases
 alias v="nvim"
@@ -75,15 +75,19 @@ alias \
 	lxldg="lxl --only-dirs --git" \
 	lxadg="lxa --only-dirs --git"
 
-function _lxt_args() {
-	if [[ "$1" =~ ^[0-9]+$ ]]; then echo "$1" "${@:2}"; else echo 2 "$@"; fi
-}
+function _lxt_args() { if [[ "$1" =~ ^[0-9]+$ ]]; then echo "$1" "${@:2}"; else echo 2 "$@"; fi; }
+
 function lxt() { lx --tree --level $(_lxt_args "$@"); }
 function lxlt() { lxl --tree --level $(_lxt_args "$@"); }
-function lxat() { lxa --tree --level $(_lxt_args "$@"); }
+
+function lxat() { lxa --ignore-glob='.git' --tree --level $(_lxt_args "$@"); }
+function lxagt() { lxa --tree --level $(_lxt_args "$@"); }
+
 function lxdt() { lxld --tree --level $(_lxt_args "$@"); }
 function lxldt() { lxld --tree --level $(_lxt_args "$@"); }
-function lxadt() { lxad --tree --level $(_lxt_args "$@"); }
+
+function lxadt() { lxad --ignore-glob='.git' --tree --level $(_lxt_args "$@"); }
+function lxadgt() { lxad --tree --level $(_lxt_args "$@"); }
 
 # explorer.exe
 if grep -qi microsoft /proc/version; then
