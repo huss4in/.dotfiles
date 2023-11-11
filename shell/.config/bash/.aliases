@@ -37,7 +37,7 @@ function update-dotfiles() {
 		pushd ~/.dotfiles &&
 		git pull && echo &&
 		parallel 'cd {} && echo {} && git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" &>/dev/null && git -c color.ui=always pull' ::: "$(git submodule foreach -q sh -c pwd)" &&
-		lazygit &&
+		(command -v lazygit &>/dev/null && lazygit) &&
 		stow -Rt ~ */ 2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2) ||
 		printf "\nUpdate failed!\n"
 
