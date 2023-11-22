@@ -9,3 +9,6 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # cargo
 [ -s "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+# brew
+[ -s "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"

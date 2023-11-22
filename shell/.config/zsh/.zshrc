@@ -66,6 +66,7 @@ plugins=(
 
     # tools integration
     git
+    brew
     docker
     docker-compose
 

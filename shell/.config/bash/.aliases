@@ -14,9 +14,10 @@ function src() {
 
 function update-dotfiles() {
 
-	osInfo=("/etc/debian_version:apt-get update && apt-get upgrade"
-		"/etc/arch-release:pacman -Syu"
-		"/etc/alpine-release:apk -U upgrade")
+	osInfo=("/etc/debian_version:sudo apt-get update && sudo apt-get upgrade"
+		"/etc/arch-release:sudo pacman -Syu"
+		"/etc/alpine-release:sudo apk -U upgrade"
+		"/System/Library/CoreServices/SystemVersion.plist:brew update && brew upgrade")
 
 	for info in "${osInfo[@]}"; do
 		os_file="${info%%:*}"
@@ -33,7 +34,7 @@ function update-dotfiles() {
 		return 1
 	fi
 
-	sudo sh -c "${update_distro}" && echo &&
+	sh -c "${update_distro}" && echo &&
 		pushd ~/.dotfiles &&
 		git pull && echo &&
 		parallel 'cd {} && echo {} && git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" &>/dev/null && git -c color.ui=always pull' ::: "$(git submodule foreach -q sh -c pwd)" &&
@@ -90,6 +91,6 @@ function lxadt() { lxad --ignore-glob='.git' --tree --level $(_lxt_args "$@"); }
 function lxadgt() { lxad --tree --level $(_lxt_args "$@"); }
 
 # explorer.exe
-if grep -qi microsoft /proc/version; then
+if [ -s "/proc/version" ] && grep -qi microsoft /proc/version; then
 	alias exp="explorer.exe"
 fi
