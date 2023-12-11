@@ -50,35 +50,36 @@ HISTFILE="$ZDOTDIR/.history_zsh"
 KEYTIMEOUT=10
 
 plugins=(
-    # zsh plugins
+    # ZSH Plugins
+    z
     zsh-completions
     zsh-autosuggestions
     zsh-syntax-highlighting
     zsh-bash-completions-fallback
     zsh-history-substring-search
 
-    # vi mode
+    # VI Mode
     zsh-vim-mode
 
-    # directory jumping
-    z
-    # zsh-interactive-cd
-
-    # tools integration
+    # Tools Integration
     git
-    brew
-    docker
-    docker-compose
+    fzf
 
     rust
     rtx
-    fzf
 
     python
     pip
 
-    # aws
+    node
+    npm
+
+    docker
+    docker-compose
 )
+
+# Source local config
+source "$ZDOTDIR/local.zshrc"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -114,7 +115,6 @@ bindkey -v '^?' backward-delete-char
 unsetopt autopushd
 
 # -- Configuration -- #
-
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
