@@ -36,7 +36,7 @@ function update-dotfiles() {
 
 	sh -c "${update_distro}" && echo &&
 		pushd ~/.dotfiles &&
-		git pull && echo &&
+		parallel 'cd {} && echo {} && git -c color.ui=always pull || true' ::: "$HOME/.dotfiles" "$HOME/.dotfiles.private" && echo &&
 		parallel 'cd {} && echo {} && git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" &>/dev/null && git -c color.ui=always pull' ::: "$(git submodule foreach -q sh -c pwd)" &&
 		(command -v lazygit &>/dev/null && lazygit) &&
 		stow -Rt ~ */ 2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2) ||
