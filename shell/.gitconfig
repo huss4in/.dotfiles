@@ -1,4 +1,5 @@
 [url "ssh://git@github.com/"]
+	pushInsteadOf = http://github.com/
 	pushInsteadOf = https://github.com/
 
 [include]
