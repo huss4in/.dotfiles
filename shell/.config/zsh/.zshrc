@@ -81,7 +81,7 @@ plugins=(
 [[ -f "$ZDOTDIR/local.zshrc" ]] && source "$ZDOTDIR/local.zshrc"
 
 # Load oh-my-zsh
-[[ -f "$ZDOTDIR/local.zshrc" ]] && source "$ZSH/oh-my-zsh.sh"
+[[ -f "$ZSH/oh-my-zsh.sh" ]] && source "$ZSH/oh-my-zsh.sh"
 
 # -- Oh-my-zsh -- #
 
