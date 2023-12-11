@@ -52,14 +52,13 @@ KEYTIMEOUT=10
 plugins=(
     # ZSH Plugins
     z
+    aliases
+    zsh-vim-mode
     zsh-completions
     zsh-autosuggestions
     zsh-syntax-highlighting
     zsh-bash-completions-fallback
     zsh-history-substring-search
-
-    # VI Mode
-    zsh-vim-mode
 
     # Tools Integration
     git
@@ -79,9 +78,10 @@ plugins=(
 )
 
 # Source local config
-source "$ZDOTDIR/local.zshrc"
+[[ -f "$ZDOTDIR/local.zshrc" ]] && source "$ZDOTDIR/local.zshrc"
 
-source $ZSH/oh-my-zsh.sh
+# Load oh-my-zsh
+[[ -f "$ZDOTDIR/local.zshrc" ]] && source "$ZSH/oh-my-zsh.sh"
 
 # -- Oh-my-zsh -- #
 
