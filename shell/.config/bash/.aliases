@@ -1,4 +1,5 @@
-#! /bin/bash
+#!/bin/bash
+
 # shellcheck disable=2016,2046,2164,2035
 
 # aliases
@@ -14,32 +15,56 @@ function src() {
 
 function update-dotfiles() {
 
-	osInfo=("/etc/debian_version:sudo apt-get update && sudo apt-get upgrade"
-		"/etc/arch-release:sudo pacman -Syu"
-		"/etc/alpine-release:sudo apk -U upgrade"
-		"/System/Library/CoreServices/SystemVersion.plist:brew update && brew upgrade")
-
-	for info in "${osInfo[@]}"; do
-		os_file="${info%%:*}"
-		update_command="${info#*:}"
-
-		if [ -f "$os_file" ]; then
-			update_distro="$update_command"
-			break
-		fi
-	done
-
-	if [ -z "$update_distro" ]; then
-		printf "Woow! New distro!\n"
-		return 1
+	# If any argument is (-u or --upgrade), upgrade packages
+	if [[ "$*" =~ (-u|--upgrade) ]]; then
+		upgrade_packages=y
+	else
+		case "$(readlink /proc/$$/exe | sed "s/.*\///")" in
+		zsh)
+			read -qs "upgrade_packages?Upgrade Packages? (N/y)"
+			echo
+			# echo && [[ -n "$upgrade_packages" ]] && echo
+			;;
+		bash)
+			read -p "Upgrade Packages? (N/y) " -n 1 upgrade_packages
+			[[ -n "$upgrade_packages" ]] && echo
+			;;
+		*)
+			upgrade_packages=n
+			;;
+		esac
 	fi
 
-	sh -c "${update_distro}" && echo &&
-		pushd ~/.dotfiles &&
+	# If upgrade_packages is y or Y, upgrade packages
+	if [[ "$upgrade_packages" =~ [yY] ]]; then
+		osInfo=("/etc/debian_version:sudo apt-get update && sudo apt-get upgrade"
+			"/etc/arch-release:sudo pacman -Syu"
+			"/etc/alpine-release:sudo apk -U upgrade"
+			"/System/Library/CoreServices/SystemVersion.plist:brew update && brew upgrade")
+
+		for info in "${osInfo[@]}"; do
+			os_file="${info%%:*}"
+			update_command="${info#*:}"
+
+			if [ -f "$os_file" ]; then
+				update_distro="$update_command"
+				break
+			fi
+		done
+
+		if [ -z "$update_distro" ]; then
+			printf "Woow! New distro!\n"
+			return 1
+		fi
+		sh -c "${update_distro}"
+	fi
+
+	echo && pushd $HOME/.dotfiles &&
 		parallel 'cd {} && echo {} && git -c color.ui=always pull || true' ::: "$HOME/.dotfiles" "$HOME/.dotfiles.private" && echo &&
 		parallel 'cd {} && echo {} && git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" &>/dev/null && git -c color.ui=always pull' ::: "$(git submodule foreach -q sh -c pwd)" &&
 		(command -v lazygit &>/dev/null && lazygit) &&
-		stow -Rt ~ */ 2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2) ||
+		echo && stow -Rvt ~ */ 2> >(grep -vE 'BUG in find_stowed_path? Absolute/relative mismatch|UNLINK|(reverts previous action)' 1>&2) &&
+		([ -d "$HOME/.dotfiles.private" ] && cd "$HOME/.dotfiles.private" && stow -Rvt ~ */ 2> >(grep -vE 'BUG in find_stowed_path? Absolute/relative mismatch|UNLINK|(reverts previous action)' 1>&2) || true) ||
 		printf "\nUpdate failed!\n"
 
 	popd &>/dev/null
