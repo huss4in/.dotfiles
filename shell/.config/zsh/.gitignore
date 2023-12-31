@@ -1,6 +1,6 @@
-.z
-.zcompdump*
-.zsh_history
-.history_zsh
-.zsh_sessions/
-local.zshrc
+/.z
+/.zcompdump*
+/.zsh_history
+/.history_zsh
+/.zsh_sessions/
+/local.*

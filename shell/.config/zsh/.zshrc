@@ -2,7 +2,9 @@
 [[ -f "$HOME/.config/bash/.aliases" ]] && source "$HOME/.config/bash/.aliases"
 
 # System fetch
-command -v neofetch &>/dev/null && neofetch
+command -v neofetch &>/dev/null && neofetch $(
+    [[ -f "$HOME/.config/zsh/local.neofetch.config" ]] && cat "$HOME/.config/zsh/local.neofetch.config"
+)
 
 # -- Instant Prompt -- #
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
