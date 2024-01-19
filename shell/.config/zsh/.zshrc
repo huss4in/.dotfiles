@@ -67,7 +67,7 @@ plugins=(
     fzf
 
     rust
-    rtx
+    mise
 
     python
     pip
