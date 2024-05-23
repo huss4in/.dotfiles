@@ -47,9 +47,9 @@
 	branch = master
 
 #nvim
-[submodule "nvim/.config/nvim/lua/user"]
-	path = nvim/.config/nvim/lua/user
-	url = https://github.com/huss4in/user_astronvim
-	branch = main
+[submodule "nvim/.config/nvim"]
+	path = astronvim/.config/nvim
+	url = https://github.com/huss4in/astronvim-config
 
 #others
+
