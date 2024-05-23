@@ -48,7 +48,7 @@
 
 #nvim
 [submodule "nvim/.config/nvim"]
-	path = astronvim/.config/nvim
+	path = nvim/.config/nvim
 	url = https://github.com/huss4in/astronvim-config
 
 #others
