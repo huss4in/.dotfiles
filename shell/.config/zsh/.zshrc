@@ -4,6 +4,7 @@
 # System fetch
 command -v neofetch &>/dev/null && neofetch $(
     [[ -f "$HOME/.config/zsh/local.neofetch.config" ]] && cat "$HOME/.config/zsh/local.neofetch.config"
+    # echo "--disable " >> $HOME/.config/zsh/local.neofetch.config
 )
 
 # -- Instant Prompt -- #
