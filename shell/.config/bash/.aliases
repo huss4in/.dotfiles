@@ -18,21 +18,8 @@ function update-dotfiles() {
 	# If any argument is (-u or --upgrade), upgrade packages
 	if [[ "$*" =~ (-u|--upgrade) ]]; then
 		upgrade_packages=y
-	else
-		case "$(readlink /proc/$$/exe | sed "s/.*\///")" in
-		zsh)
-			read -qs "upgrade_packages?Upgrade Packages? (N/y)"
-			echo
-			# echo && [[ -n "$upgrade_packages" ]] && echo
-			;;
-		bash)
-			read -p "Upgrade Packages? (N/y) " -n 1 upgrade_packages
-			[[ -n "$upgrade_packages" ]] && echo
-			;;
-		*)
-			upgrade_packages=n
-			;;
-		esac
+	else 
+		upgrade_packages=n
 	fi
 
 	# If upgrade_packages is y or Y, upgrade packages
@@ -56,10 +43,10 @@ function update-dotfiles() {
 			printf "Woow! New distro!\n"
 			return 1
 		fi
-		sh -c "${update_distro}"
+		sh -c "${update_distro}" && echo
 	fi
 
-	echo && pushd $HOME/.dotfiles &&
+	pushd $HOME/.dotfiles &&
 		parallel 'cd {} && echo {} && git -c color.ui=always pull || true' ::: "$HOME/.dotfiles" "$HOME/.dotfiles.private" && echo &&
 		parallel 'cd {} && echo {} && git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" &>/dev/null && git -c color.ui=always pull' ::: "$(git submodule foreach -q sh -c pwd)" &&
 		(command -v lazygit &>/dev/null && lazygit) &&
@@ -74,6 +61,8 @@ function update-dotfiles() {
 function tx() {
 	if [[ -z "$1" ]]; then
 		tmux new -As "$(basename "$PWD")" -c "$PWD"
+	elif [[ "$1" == "-a" ]]; then
+		tmux a
 	elif [[ -n "$2" ]]; then
 		tmux attach -t "$1" -c "$2" 2>/dev/null || (cd "$2" && tmux new -As "$1")
 	else
