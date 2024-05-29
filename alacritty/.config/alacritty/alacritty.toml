@@ -69,7 +69,7 @@ save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [shell]
-args = ["--login", "-c", "tmux new -As main"]
+args = ["--login", "-c", "tmux new -As Main"]
 program = "/bin/zsh"
 
 [[keyboard.bindings]]
