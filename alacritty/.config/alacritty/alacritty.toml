@@ -43,10 +43,11 @@ size = 13.5
 family = "FiraCode Nerd Font"
 
 [window]
+option_as_alt = "OnlyLeft"
 decorations = "buttonless"
 decorations_theme_variant = "Dark"
 dynamic_padding = false
-opacity = 0.2
+opacity = 0.7
 blur = true
 
 [window.class]
@@ -69,7 +70,7 @@ save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [shell]
-args = ["--login", "-c", "tmux new -As Main"]
+args = ["--login"]   #, "-c", "tmux a || tmux new -As Main"]
 program = "/bin/zsh"
 
 [[keyboard.bindings]]
