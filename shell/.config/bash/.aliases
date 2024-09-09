@@ -46,12 +46,15 @@ function update-dotfiles() {
 		sh -c "${update_distro}" && echo
 	fi
 
-	pushd $HOME/.dotfiles >/dev/null &&
-		parallel 'cd {} && echo {} && git -c color.ui=always pull || true' ::: "$HOME/.dotfiles" "$HOME/.dotfiles.private" "$(git submodule foreach -q sh -c pwd)" && echo &&
-		# parallel 'cd {} && echo {} && git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" &>/dev/null && git -c color.ui=always pull' ::: "$(git submodule foreach -q sh -c pwd)" &&
+	pushd "$HOME/.dotfiles" >/dev/null &&
+		parallel 'cd {} && echo {} && git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" &>/dev/null && git -c color.ui=always pull || true' ::: "$HOME/.dotfiles" "$HOME/.dotfiles.private" "$(git submodule foreach -q sh -c pwd)" && echo &&
 		(command -v lazygit &>/dev/null && lazygit) &&
-		echo && stow -Rvt ~ */ 2> >(grep -vE 'BUG in find_stowed_path? Absolute/relative mismatch|UNLINK|(reverts previous action)' 1>&2) &&
-		([ -d "$HOME/.dotfiles.private" ] && cd "$HOME/.dotfiles.private" && stow -Rvt ~ */ 2> >(grep -vE 'BUG in find_stowed_path? Absolute/relative mismatch|UNLINK|(reverts previous action)' 1>&2) || true) ||
+		stow -Rvt ~ */ 2> >(grep -vE 'BUG in find_stowed_path? Absolute/relative mismatch|UNLINK|(reverts previous action)' 1>&2) &&
+		(
+			[ -d "$HOME/.dotfiles.private" ] && pushd "$HOME/.dotfiles.private" >/dev/null &&
+				([ -n "$(git status --porcelain)" ] && command -v lazygit &>/dev/null && lazygit) &&
+				stow -Rvt ~ */ 2> >(grep -vE 'BUG in find_stowed_path? Absolute/relative mismatch|UNLINK|(reverts previous action)' 1>&2) || true
+		) ||
 		printf "\nUpdate failed!\n"
 
 	popd &>/dev/null
