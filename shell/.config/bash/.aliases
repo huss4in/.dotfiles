@@ -52,7 +52,7 @@ function update-dotfiles() {
 	}
 
 	[ -d "$HOME/.dotfiles" ] && pushd "$HOME/.dotfiles" >/dev/null &&
-		parallel '[ -d "{}" ] && echo {} && cd {} && git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" &>/dev/null && git -c color.ui=always pull || true' ::: "$HOME/.dotfiles" "$(git submodule foreach -q sh -c pwd)" "$HOME/.dotfiles.private" &&
+		parallel '[ -d "{}" ] && echo {} && cd {} && git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" &>/dev/null && git -c color.ui=always pull --rebase || true' ::: "$HOME/.dotfiles" "$(git submodule foreach -q sh -c pwd)" "$HOME/.dotfiles.private" &&
 		_lazystow &&
 		([ -d "$HOME/.dotfiles.private" ] && pushd "$HOME/.dotfiles.private" >/dev/null && _lazystow) || printf "\nUpdate failed!\n"
 	popd &>/dev/null
