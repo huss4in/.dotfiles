@@ -1,3 +1,4 @@
+[general]
 live_config_reload = true
 
 # Campbell (Windows 10 default)
@@ -69,7 +70,7 @@ multiplier = 4
 save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
-[shell]
+[terminal.shell]
 args = ["--login", "-c", "tmux a || tmux new -As Main"]
 program = "/bin/zsh"
 
