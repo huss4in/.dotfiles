@@ -76,6 +76,7 @@ plugins=(
     node
     npm
 
+    terraform
     docker
     docker-compose
 )

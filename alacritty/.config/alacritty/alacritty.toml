@@ -38,7 +38,7 @@ shape = "Block"
 TERM = "xterm-256color"
 
 [font]
-size = 13.5
+size = 14
 
 [font.normal]
 family = "FiraCode Nerd Font"
