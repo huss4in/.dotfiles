@@ -74,9 +74,9 @@ function tx() {
 
 # exa
 alias \
-	exa="exa --icons" \
+	exa="eza --icons" \
 	\
-	lx="exa" \
+	lx="eza" \
 	lxl="lx --long --group --header" \
 	lxa="lxl --all --group --header" \
 	\
