@@ -1,0 +1,3 @@
+#!/bin/bash
+
+alias chezmoi-lazygit='lazygit --path "$(chezmoi source-path)"'
